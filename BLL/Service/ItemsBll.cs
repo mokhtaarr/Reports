@@ -345,6 +345,13 @@ namespace BLL.Service
                          select new getDetailDto
                          {
                              ItemCardId = (int)salesInvoiceItemCard.ItemCardId,
+                             ItemCode = itemCard.ItemCode,
+                             ItemDescA = itemCard.ItemDescA,
+                             UnitNam = itemUnit.UnitNam,
+                             PartCode = storePartation.PartCode,
+                             PartDescA = storePartation.PartDescA,
+                             StoreCode = store.StoreCode,
+                             StoreDescA = store.StoreDescA,
                              Price = (decimal)salesInvoiceItemCard.Price,
                              PriceAfterRate = (decimal)salesInvoiceItemCard.PriceAfterRate,
                              QtyBeforRate = (decimal)salesInvoiceItemCard.QtyBeforRate,
