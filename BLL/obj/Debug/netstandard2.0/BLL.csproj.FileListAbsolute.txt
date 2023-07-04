@@ -1,0 +1,180 @@
+C:\Users\HPZBookG3\source\repos\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+C:\Users\HPZBookG3\source\repos\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+C:\Users\HPZBookG3\source\repos\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+C:\Users\HPZBookG3\source\repos\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\HPZBookG3\source\repos\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+C:\Users\HPZBookG3\source\repos\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\HPZBookG3\source\repos\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+C:\Users\HPZBookG3\source\repos\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+C:\Users\HPZBookG3\source\repos\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HPZBookG3\source\repos\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+C:\Users\HPZBookG3\source\repos\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+C:\Users\HPZBookG3\source\repos\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\HPZBookG3\source\repos\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+C:\Users\HPZBookG3\source\repos\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+C:\Users\HPZBookG3\source\repos\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+D:\SoftGo\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+D:\SoftGo\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+D:\SoftGo\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+D:\SoftGo\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+D:\SoftGo\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+D:\SoftGo\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+D:\SoftGo\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+D:\SoftGo\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+D:\SoftGo\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\SoftGo\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+D:\SoftGo\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+D:\SoftGo\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+D:\SoftGo\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+D:\SoftGo\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+D:\SoftGo\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+D:\report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+D:\report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+D:\report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+D:\report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+D:\report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+D:\report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+D:\report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+D:\report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+D:\report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+D:\report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+D:\report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+D:\report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+D:\report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+D:\report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+D:\SoftGo\reportweb\Report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+D:\lVersion report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+D:\lVersion report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\lVersion report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+D:\lVersion report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+D:\lVersion report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+D:\lVersion report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+D:\lVersion report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+D:\lVersion report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+D:\lVersion report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+D:\lVersion report\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+D:\lVersion report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+D:\lVersion report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+D:\lVersion report\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+D:\lVersion report\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+D:\lVersion report\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+C:\Users\AcTivE\Desktop\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+C:\Users\tom\Downloads\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb

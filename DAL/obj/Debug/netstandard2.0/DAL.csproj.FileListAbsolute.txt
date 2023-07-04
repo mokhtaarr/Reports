@@ -1,0 +1,120 @@
+C:\Users\HPZBookG3\source\repos\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+C:\Users\HPZBookG3\source\repos\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\HPZBookG3\source\repos\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\HPZBookG3\source\repos\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+C:\Users\HPZBookG3\source\repos\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HPZBookG3\source\repos\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+C:\Users\HPZBookG3\source\repos\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+C:\Users\HPZBookG3\source\repos\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\HPZBookG3\source\repos\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+C:\Users\HPZBookG3\source\repos\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+D:\Work Soft Go Soluation\Mokhtar\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+D:\SoftGo\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+D:\SoftGo\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+D:\SoftGo\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+D:\SoftGo\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+D:\SoftGo\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\SoftGo\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+D:\SoftGo\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+D:\SoftGo\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+D:\SoftGo\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+D:\SoftGo\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+D:\report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+D:\report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+D:\report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+D:\report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+D:\report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+D:\report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+D:\report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+D:\report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+D:\report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+D:\SoftGo\reportweb\Report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+D:\lVersion report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+D:\lVersion report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+D:\lVersion report\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+D:\lVersion report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+D:\lVersion report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\lVersion report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+D:\lVersion report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+D:\lVersion report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+D:\lVersion report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+D:\lVersion report\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+C:\Users\AcTivE\Desktop\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+C:\Users\tom\Downloads\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb

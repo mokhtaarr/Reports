@@ -1,0 +1,172 @@
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\appsettings.Development.json
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\appsettings.json
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\SmtpConfig.json
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.exe
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.deps.json
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.runtimeconfig.json
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.runtimeconfig.dev.json
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.pdb
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Azure.Core.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Azure.Identity.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Bcl.HashCode.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Data.SqlClient.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Configuration.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Logging.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Options.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Primitives.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Identity.Client.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Logging.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Protocols.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Tokens.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.OpenApi.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.SqlServer.Server.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Win32.Registry.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Win32.SystemEvents.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Newtonsoft.Json.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Configuration.ConfigurationManager.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Diagnostics.DiagnosticSource.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Drawing.Common.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Formats.Asn1.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Memory.Data.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Runtime.Caching.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.AccessControl.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.Cryptography.Cng.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.Cryptography.ProtectedData.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.Permissions.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.Principal.Windows.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Text.Encoding.CodePages.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Text.Encodings.Web.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Text.Json.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Windows.Extensions.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\BLL.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\DAL.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Static.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\BLL.pdb
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\DAL.pdb
+C:\Users\HPZBookG3\source\repos\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Static.pdb
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.csproj.AssemblyReference.cache
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.AssemblyInfoInputs.cache
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.AssemblyInfo.cs
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.csproj.CoreCompileInputs.cache
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\staticwebassets\Reports.StaticWebAssets.Manifest.cache
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\staticwebassets\Reports.StaticWebAssets.xml
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\scopedcss\bundle\Reports.styles.css
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.RazorTargetAssemblyInfo.cache
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.csproj.CopyComplete
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.dll
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.pdb
+C:\Users\HPZBookG3\source\repos\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.genruntimeconfig.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\appsettings.Development.json
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\appsettings.json
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\SmtpConfig.json
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.exe
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.deps.json
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.runtimeconfig.json
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.runtimeconfig.dev.json
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Reports.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Azure.Core.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Azure.Identity.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Bcl.AsyncInterfaces.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Bcl.HashCode.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Data.SqlClient.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.Design.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.Relational.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Caching.Abstractions.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Caching.Memory.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Configuration.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Configuration.Binder.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.DependencyInjection.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Logging.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Options.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Extensions.Primitives.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Identity.Client.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Identity.Client.Extensions.Msal.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Abstractions.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Logging.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Protocols.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.IdentityModel.Tokens.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.OpenApi.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.SqlServer.Server.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Win32.Registry.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Win32.SystemEvents.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Newtonsoft.Json.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Swashbuckle.AspNetCore.Swagger.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Configuration.ConfigurationManager.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Diagnostics.DiagnosticSource.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Drawing.Common.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Formats.Asn1.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.IdentityModel.Tokens.Jwt.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Memory.Data.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Runtime.Caching.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Runtime.CompilerServices.Unsafe.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.AccessControl.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.Cryptography.Cng.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.Cryptography.ProtectedData.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.Permissions.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Security.Principal.Windows.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Text.Encoding.CodePages.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Text.Encodings.Web.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Text.Json.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\System.Windows.Extensions.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Microsoft.Data.SqlClient.SNI.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\BLL.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\DAL.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Static.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\BLL.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\DAL.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\bin\Release\netcoreapp3.1\win-x64\Static.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.csproj.AssemblyReference.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.GeneratedMSBuildEditorConfig.editorconfig
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.AssemblyInfoInputs.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.AssemblyInfo.cs
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.csproj.CoreCompileInputs.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.MvcApplicationPartsAssemblyInfo.cs
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.MvcApplicationPartsAssemblyInfo.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\staticwebassets\Reports.StaticWebAssets.Manifest.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\staticwebassets\Reports.StaticWebAssets.xml
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\scopedcss\bundle\Reports.styles.css
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.RazorTargetAssemblyInfo.cache
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.csproj.CopyComplete
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.dll
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.pdb
+E:\Programming\Programming\my work\last projects\SoftGo\GitHab\Report\Reports\Reports\obj\Release\netcoreapp3.1\win-x64\Reports.genruntimeconfig.cache
