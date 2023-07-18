@@ -82,7 +82,8 @@ namespace Reports.Controllers
                 Tel = dto.Tel,
                 Tel2 = dto.Te2,
                 Email = dto.Email,
-                Address = dto.Address
+                Address = dto.Address,
+                IsMobile = true
             };
 
             await _context.MsCustomer.AddAsync(customer);

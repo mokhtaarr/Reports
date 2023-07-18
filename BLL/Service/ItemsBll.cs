@@ -4,6 +4,7 @@ using DAL.Context;
 using DAL.Models;
 using DAL.Repository;
 using Microsoft.Identity.Client.Extensions.Msal;
+using Static.Helper;
 using Static.VM;
 using System;
 using System.Collections.Concurrent;
@@ -316,7 +317,7 @@ namespace BLL.Service
                          join book in db.SysBooks
                          on salesInovice.BookId equals book.BookId
                          orderby salesInovice.CreatedAt ascending
-                         where salesInovice.CreatedBy == creatdBy && salesInovice.CustomerId == customer.CustomerId
+                         where salesInovice.CreatedBy == creatdBy && salesInovice.CustomerId == customer.CustomerId && salesInovice.DeletedBy == null && salesInovice.DeletedAt == null
                          select new getHeaderDto
                          {
                              InvId = salesInovice.InvId,

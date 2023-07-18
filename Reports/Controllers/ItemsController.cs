@@ -152,6 +152,49 @@ namespace Reports.Controllers
 
         }
 
+        [HttpPut("{invid}")]
+        public async Task<IActionResult> UpdateHeader(int invid, [FromBody] UpdatedHeaderDto dto)
+        {
+            var updateDto = new updateHeaderDto();
+            var header = await _db.MsSalesInvoice.FindAsync(invid);
+            if (header == null) return NotFound(invid);
+
+            header.InvTotal = dto.Header_InvTotal;
+            header.UpdateAt = dto.Header_UpdateAt;
+            header.DiscAmount = dto.Header_DiscAmount;
+            header.DiscPercent = dto.Header_DiscPercent;
+            header.DiscAmount2 = dto.Header_DiscAmount2;
+            header.DiscPercent2 = dto.Header_DiscPercent2;
+            header.TotalItemTax1 = dto.Header_TotalItemTax1;
+            header.TotalItemTax2 = dto.Header_TotalItemTax2;
+            header.TotalItemTax3 = dto.Header_TotalItemTax3;
+            header.TaxValue1 = dto.Header_TaxValue1;
+            header.TaxValue2 = dto.Header_TaxValue2;
+            header.TaxValue3 = dto.Header_TaxValue3;
+            header.TaxesId1 = dto.Header_TaxesId1;
+            header.TaxesId2 = dto.Header_TaxesId2;
+            header.TaxesId3 = dto.Header_TaxesId3;
+            header.PriceAfterTax = dto.Header_PriceAfterTax;
+            header.NetPrice = dto.Header_NetPrice;
+            header.PaidPrice = dto.Header_PaidPrice;
+            header.PaidPriceVisa = dto.Header_PaidPriceVisa;
+            header.BankTransfer = dto.Header_BankTransfer;
+            header.Remarks = dto.Remarks;
+            header.AddField3 = dto.AddField3;
+            header.InvDueDate = dto.InvDueDate;
+
+            _db.SaveChanges();
+
+            var detailRange = _db.MsSalesInvoiceItemCard.Where(inv => inv.InvId == header.InvId).ToList();
+            _db.MsSalesInvoiceItemCard.RemoveRange(detailRange);
+            _db.SaveChanges();
+
+            updateDto.message = "update Successfully";
+            updateDto.invid = header.InvId;
+            return Ok(updateDto);
+
+        }
+
         [HttpPost]
         public IActionResult CreateDetail([FromBody] List<DetailDto> dto)
         {
@@ -192,6 +235,21 @@ namespace Reports.Controllers
             res.Invid = InvD;
             res.Message = "تم أضافه الداتا بنجاح";
             return Ok(res);
+        }
+
+        [HttpDelete("{invid},{UserId}")]
+        public async Task<IActionResult> DeleteHeader(int invid , int UserId)
+        {
+            var deleteMessageDto = new DeleteDto();
+            var header = await _db.MsSalesInvoice.FindAsync(invid);
+            if (header == null) return NotFound(invid);
+            header.DeletedAt = DateTime.Now;
+            header.DeletedBy = UserId.ToString();
+            _db.SaveChanges();
+
+            deleteMessageDto.message = "Data is Deleted Successfully";
+
+            return Ok(deleteMessageDto);
         }
 
         [HttpGet]
@@ -304,6 +362,48 @@ namespace Reports.Controllers
             return Ok(res);
         }
 
+        //[HttpPut("{SalesOrderId}")]
+        //public async Task<IActionResult> UpdateOrderHeader(int SalesOrderId, [FromBody] UpdatedHeaderDto dto)
+        //{
+        //    var updateDto = new updateHeaderDto();
+        //    var Orderheader = await _db.MsSalesOrder.FindAsync(SalesOrderId);
+        //    if (Orderheader == null) return NotFound(SalesOrderId);
+
+        //    header.InvTotal = dto.Header_InvTotal;
+        //    header.UpdateAt = dto.Header_UpdateAt;
+        //    header.DiscAmount = dto.Header_DiscAmount;
+        //    header.DiscPercent = dto.Header_DiscPercent;
+        //    header.DiscAmount2 = dto.Header_DiscAmount2;
+        //    header.DiscPercent2 = dto.Header_DiscPercent2;
+        //    header.TotalItemTax1 = dto.Header_TotalItemTax1;
+        //    header.TotalItemTax2 = dto.Header_TotalItemTax2;
+        //    header.TotalItemTax3 = dto.Header_TotalItemTax3;
+        //    header.TaxValue1 = dto.Header_TaxValue1;
+        //    header.TaxValue2 = dto.Header_TaxValue2;
+        //    header.TaxValue3 = dto.Header_TaxValue3;
+        //    header.TaxesId1 = dto.Header_TaxesId1;
+        //    header.TaxesId2 = dto.Header_TaxesId2;
+        //    header.TaxesId3 = dto.Header_TaxesId3;
+        //    header.PriceAfterTax = dto.Header_PriceAfterTax;
+        //    header.NetPrice = dto.Header_NetPrice;
+        //    header.PaidPrice = dto.Header_PaidPrice;
+        //    header.PaidPriceVisa = dto.Header_PaidPriceVisa;
+        //    header.BankTransfer = dto.Header_BankTransfer;
+        //    header.Remarks = dto.Remarks;
+        //    header.AddField3 = dto.AddField3;
+        //    header.InvDueDate = dto.InvDueDate;
+
+        //    _db.SaveChanges();
+
+        //    var detailRange = _db.MsSalesInvoiceItemCard.Where(inv => inv.InvId == header.InvId).ToList();
+        //    _db.MsSalesInvoiceItemCard.RemoveRange(detailRange);
+        //    _db.SaveChanges();
+
+        //    updateDto.message = "update Successfully";
+        //    updateDto.invid = header.InvId;
+        //    return Ok(updateDto);
+
+        //}
 
         [HttpPost]
         public IActionResult headerSalesOffer([FromBody] SalesOfferDto dto)

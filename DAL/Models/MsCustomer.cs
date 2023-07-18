@@ -106,6 +106,8 @@ namespace DAL.Models
         public byte[] LastUpdateTime { get; set; }
         public bool? IsServerEntity { get; set; }
         public int? MainServerId { get; set; }
+        public bool? IsMobile { get; set; }
+
 
         public virtual MsCurrency Currency { get; set; }
         public virtual MsCustomerCategory CustomerCat { get; set; }
@@ -118,5 +120,6 @@ namespace DAL.Models
         public virtual ICollection<MsCustomerBranches> MsCustomerBranches { get; set; }
         public virtual ICollection<MsCustomerContacts> MsCustomerContacts { get; set; }
         public virtual ICollection<MsCustomersFollowUp> MsCustomersFollowUp { get; set; }
+
     }
 }
