@@ -90,7 +90,11 @@ namespace Reports.Controllers
             //string authcode = dtauth.Rows[0][0].ToString();
 
 
-            if (token.IsEmpty()) return NotFound(resultDTO);
+            if (token.IsEmpty())
+            { return NotFound(resultDTO); }
+                
+                
+               
 
             resultDTO.data = token;
             resultDTO.Status = true;
@@ -140,6 +144,44 @@ namespace Reports.Controllers
 
 
             return Ok(user);
+        }
+        [HttpPost, AllowAnonymous]
+        public IActionResult updatetoken(int userid, string uptoken)
+        {
+            resualtdtosupdate resultDTO = new resualtdtosupdate() { Status = false, Message = "خطا بالبيانات" };
+            if (userid.IsEmpty())
+                return NotFound(new { status = 500, Token = "", Message = "ادخل اسم المستخدم" });
+
+            else if (uptoken.IsEmpty())
+                return NotFound(new { status = 500, Token = "", Message = "ادخل الرمز" });
+
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    _accountBll.Updatetoken(userid, uptoken);
+                    resultDTO.Message = "تم تسجيل الدخول بنجاح";
+                    resultDTO.Status = true;
+
+
+                }
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+
+
+            return Ok(resultDTO);
+
         }
 
 

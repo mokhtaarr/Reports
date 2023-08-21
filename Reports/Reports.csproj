@@ -27,11 +27,5 @@
     <ProjectReference Include="..\Static\Static.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\images\products\EgyptionMixer1.png" />
-    <None Include="wwwroot\images\products\EgyptionMixer2.png" />
-    <None Include="wwwroot\images\products\EgyptionMixer3.png" />
-  </ItemGroup>
-
 
 </Project>

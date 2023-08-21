@@ -130,6 +130,8 @@ namespace DAL.Models
         public bool? IsRemoteEntity { get; set; }
         public int? RemotId { get; set; }
         public int? MainCustServerId { get; set; }
+        public bool? IsMobile { get; set; }
+
 
         public virtual MsSalesOffer SalesOffer { get; set; }
         public virtual ICollection<MsReceiptNote> MsReceiptNote { get; set; }

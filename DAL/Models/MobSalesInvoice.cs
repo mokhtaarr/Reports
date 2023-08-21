@@ -10,7 +10,7 @@ namespace DAL.Models2
             MobSalesInvoiceItemCard = new HashSet<MobSalesInvoiceItemCard>();
         }
 
-        public int InvId { get; set; }
+        public int MobInvId { get; set; }
         public int? CustomerId { get; set; }
         public int? StoreId { get; set; }
         public int? CurrencyId { get; set; }
@@ -120,6 +120,7 @@ namespace DAL.Models2
         public bool? IsRemoteEntity { get; set; }
         public int? RemotId { get; set; }
         public int? MainCustServerId { get; set; }
+        public bool IsMobile { get; set; }
 
         public virtual ICollection<MobSalesInvoiceItemCard> MobSalesInvoiceItemCard { get; set; }
     }

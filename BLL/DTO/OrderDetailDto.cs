@@ -28,5 +28,7 @@ namespace BLL.DTO
         public bool Tax1IsAccomulative { get; set; }
         public bool Tax2IsAccomulative { get; set; }
         public bool Tax3IsAccomulative { get; set; }
+        public bool IsCollection { get; set; }
+
     }
 }

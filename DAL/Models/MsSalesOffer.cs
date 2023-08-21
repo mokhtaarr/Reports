@@ -98,6 +98,8 @@ namespace DAL.Models
         public string DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }
         public int? ShiftId { get; set; }
+        public bool? IsMobile { get; set; }
+
 
         public virtual ICollection<MsSalesInvoice> MsSalesInvoice { get; set; }
         public virtual ICollection<MsSalesOfferItemCard> MsSalesOfferItemCard { get; set; }

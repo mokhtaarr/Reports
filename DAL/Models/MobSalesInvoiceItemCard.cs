@@ -6,7 +6,7 @@ namespace DAL.Models2
     public partial class MobSalesInvoiceItemCard
     {
         public int InvItemCardId { get; set; }
-        public int? InvId { get; set; }
+        public int? MobInvId { get; set; }
         public int? ItemCardId { get; set; }
         public int? ItemAtrribBatchId { get; set; }
         public int? StoreId { get; set; }

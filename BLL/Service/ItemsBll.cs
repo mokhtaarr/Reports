@@ -128,11 +128,17 @@ namespace BLL.Service
             int Size_Of_Page = (Size_No ?? 9);
             int No_Of_Page = (Page_No ?? 1);
 
-            var ItemsName = (from item in db.MsItemCard
+            var ItemsName = (
+                             from item in db.MsItemCard
                              join img in db.MsItemImages
-                             on item.ItemCardId equals img.ItemCardId
-                             
-                            select new ItemNameDto
+                             on item.ItemCardId equals img.ItemCardId into itemImages
+                             from img in itemImages.DefaultIfEmpty()
+
+                             //from item in db.MsItemCard
+                             // join img in db.MsItemImages
+                             //on item.ItemCardId equals img.ItemCardId into itemImages
+
+                             select new ItemNameDto
                             {
                                 ItemCardId=item.ItemCardId,
                                 ItemDescA = item.ItemDescA,
@@ -165,8 +171,10 @@ namespace BLL.Service
                                 Tax1Style= (int)item.Tax1Style,
                                 Tax2Style = (int)item.Tax2Style,
                                 Tax3Style= (int)item.Tax3Style,
+                                IsCollection = (bool)item.IsCollection,
                                 ProductTypeId = (int)item.ProductTypeId,
                                 ItemColor = item.ItemColor,
+                                
                                 imagePath=img.ImgPath
                             }).Skip((No_Of_Page - 1) * Size_Of_Page).Take(Size_Of_Page);
             itmDto.Page_No = No_Of_Page;
@@ -262,6 +270,7 @@ namespace BLL.Service
                             UnitId = itmUnit.UnitId,
                             UnitNam = itmUnit.UnitNam,
                             UnitNamE = itmUnit.UnitNameE,
+                            BarCode1 = itmUnit.BarCode1,
                             IsDefaultPurchas = (bool)itmUnit.IsDefaultPurchas,
                             IsDefaultSale= (bool)itmUnit.IsDefaultSale,
                             Price1= (decimal)itmUnit.Price1,
@@ -309,31 +318,101 @@ namespace BLL.Service
             return items;
         }
 
+        //public IEnumerable<ItemPartationDto> GetPartation(int id)
+        //{
+        //    var items = from itmPart in db.MsItemPartition
+        //                join part in db.MsPartition
+        //                on itmPart.StorePartId equals part.StorePartId
+        //                where itmPart.ItemCardId == id
+
+        //                select new ItemPartationDto
+        //                {
+        //                    itemPardId = itmPart.ItemPartId,
+        //                    PartDescA = part.PartDescA,
+        //                    PartDescE = part.PartDescE,
+        //                    StorePartId = (int)itmPart.StorePartId,
+        //                    CoastAverage = (decimal)itmPart.CoastAverage,
+        //                    QtyInNotebook = (decimal)itmPart.QtyInNotebook,
+        //                    ReservedQty = (decimal)itmPart.ReservedQty
+        //                };
+
+        //    return items;
+        //}
+
+
         public IEnumerable<getHeaderDto> GetHeaderByCustomerId(string creatdBy)
         {
-            var header = from salesInovice in db.MsSalesInvoice
+            var header = from salesInovice in db.MobSalesInvoice
                          join customer in db.MsCustomer
                          on salesInovice.CustomerId equals customer.CustomerId
                          join book in db.SysBooks
                          on salesInovice.BookId equals book.BookId
-                         orderby salesInovice.CreatedAt ascending
-                         where salesInovice.CreatedBy == creatdBy && salesInovice.CustomerId == customer.CustomerId && salesInovice.DeletedBy == null && salesInovice.DeletedAt == null
+                         orderby salesInovice.CreatedAt descending
+                         where salesInovice.CreatedBy == creatdBy  && salesInovice.DeletedAt == null && salesInovice.IsMobile == true
                          select new getHeaderDto
                          {
-                             InvId = salesInovice.InvId,
+                             InvId = salesInovice.MobInvId,
                              CustomerCode = customer.CustomerCode,
                              CustomerDescA = customer.CustomerDescA,
                              NetPrice = (decimal)salesInovice.NetPrice,
                              DocTrno = book.PrefixCode + "-" + salesInovice.TrNo,
-                             CreatedAt = (DateTime)salesInovice.CreatedAt
+                             CreatedAt = (DateTime)salesInovice.CreatedAt,
+                             AddField4_transport = salesInovice.AddField4,
+                             AddField5_SalesManager = salesInovice.AddField5
                          };
 
             return header;
         }
 
+        public IEnumerable<getOrderHeaderDto> GetOrderHeaderByCreatBy(string createdBy)
+        {
+            var orderHeader = from MsSalesOrder in db.MsSalesOrder
+                              join customer in db.MsCustomer
+                              on MsSalesOrder.CustomerId equals customer.CustomerId
+                              join book in db.SysBooks
+                              on MsSalesOrder.BookId equals book.BookId
+                              orderby MsSalesOrder.CreatedAt descending
+                              where MsSalesOrder.CreatedBy == createdBy && MsSalesOrder.DeletedAt == null && MsSalesOrder.IsMobile == true
+                              select new getOrderHeaderDto
+                              {
+                                  SalesOrderId = MsSalesOrder.SalesOrderId,
+                                  CustomerCode = customer.CustomerCode,
+                                  CustomerDescA = customer.CustomerDescA,
+                                  NetPrice = (decimal)MsSalesOrder.NetPrice,
+                                  DocTrno = book.PrefixCode + "-" + MsSalesOrder.TrNo,
+                                  CreatedAt = (DateTime)MsSalesOrder.CreatedAt,
+                                  AddField4_transport = MsSalesOrder.AddField4,
+                                  AddField5_SalesManager = MsSalesOrder.AddField5,
+                              };
+            return orderHeader;
+                              
+        }
+
+        public IEnumerable<getheaderSalesOfferDto> getheaderSalesOfferByCreatBy(string createdBy)
+        {
+            var offerHeader = from salesOffer in db.MsSalesOffer
+                              join customer in db.MsCustomer
+                              on salesOffer.CustomerId equals customer.CustomerId
+                              join book in db.SysBooks
+                              on salesOffer.BookId equals book.BookId
+                              orderby salesOffer.CreatedAt descending
+                              where salesOffer.CreatedBy == createdBy && salesOffer.DeletedAt == null && salesOffer.IsMobile == true
+                              select new getheaderSalesOfferDto
+                              {
+                                  SalesOfferId = salesOffer.SalesOfferId,
+                                  CustomerCode = customer.CustomerCode,
+                                  CustomerDescA = customer.CustomerDescA,
+                                  NetPrice = (decimal)salesOffer.NetPrice,
+                                  DocTrno = book.PrefixCode + "-" + salesOffer.TrNo,
+                                  CreatedAt = (DateTime)salesOffer.CreatedAt,
+                                  AddField4_transport = salesOffer.AddField4,
+                                  AddField5_SalesManager = salesOffer.AddField5
+                              };
+            return offerHeader;
+        }
         public IEnumerable<getDetailDto> GetDetailByInvId(int invId)
         {
-            var Detail = from salesInvoiceItemCard in db.MsSalesInvoiceItemCard
+            var Detail = from salesInvoiceItemCard in db.MobSalesInvoiceItemCard
                          join itemCard in db.MsItemCard
                          on salesInvoiceItemCard.ItemCardId equals itemCard.ItemCardId
                          join itemUnit in db.MsItemUnit
@@ -342,7 +421,7 @@ namespace BLL.Service
                          on salesInvoiceItemCard.StorePartId equals storePartation.StorePartId
                          join store in db.MsStores
                          on salesInvoiceItemCard.StoreId equals store.StoreId
-                         where salesInvoiceItemCard.InvId == invId
+                         where salesInvoiceItemCard.MobInvId == invId
                          select new getDetailDto
                          {
                              ItemCardId = (int)salesInvoiceItemCard.ItemCardId,
@@ -375,6 +454,98 @@ namespace BLL.Service
                          };
             return Detail;
                         
+        }
+
+        public IEnumerable<getOrderDetailDto> GetOrderDetailBySalesOrdertemCardId(int SalesOrderId)
+        {
+            var OrderDetail = from MsSalesOrderItemCard in db.MsSalesOrderItemCard
+                              join itemCard in db.MsItemCard
+                              on MsSalesOrderItemCard.ItemCardId equals itemCard.ItemCardId
+                              join itemUnit in db.MsItemUnit
+                              on MsSalesOrderItemCard.UnitId equals itemUnit.UnitId
+                              join storePartation in db.MsPartition
+                              on MsSalesOrderItemCard.StorePartId equals storePartation.StorePartId
+                              join store in db.MsStores
+                              on MsSalesOrderItemCard.StoreId equals store.StoreId
+                              where MsSalesOrderItemCard.SalesOrderId == SalesOrderId
+                              select new getOrderDetailDto
+                              {
+                                  ItemCardId = (int)MsSalesOrderItemCard.ItemCardId,
+                                  ItemCode = itemCard.ItemCode,
+                                  ItemDescA = itemCard.ItemDescA,
+                                  UnitNam = itemUnit.UnitNam,
+                                  PartCode = storePartation.PartCode,
+                                  PartDescA = storePartation.PartDescA,
+                                  StoreCode = store.StoreCode,
+                                  StoreDescA = store.StoreDescA,
+                                  Price = (decimal)MsSalesOrderItemCard.Price,
+                                  PriceAfterRate = (decimal)MsSalesOrderItemCard.PriceAfterRate,
+                                  QtyBeforRate = (decimal)MsSalesOrderItemCard.QtyBeforRate,
+                                  Quantity = (decimal)MsSalesOrderItemCard.Quantity,
+                                  UnitId = (int)MsSalesOrderItemCard.UnitId,
+                                  UnitRate = (decimal)MsSalesOrderItemCard.UnitRate,
+                                  StoreId = (int)MsSalesOrderItemCard.StoreId,
+                                  StorePartId = (int)MsSalesOrderItemCard.StorePartId,
+                                  DisPercent = (decimal)MsSalesOrderItemCard.DisPercent,
+                                  DisAmount = (decimal)MsSalesOrderItemCard.DisAmount,
+                                  Tax1Percent = (decimal)MsSalesOrderItemCard.Tax1Percent,
+                                  Tax2Percent = (decimal)MsSalesOrderItemCard.Tax2Percent,
+                                  Tax3Percent = (decimal)MsSalesOrderItemCard.Tax3Percent,
+                                  TaxesId1 = (int)MsSalesOrderItemCard.TaxesId1,
+                                  TaxesId2 = (int)MsSalesOrderItemCard.TaxesId2,
+                                  TaxesId3 = (int)MsSalesOrderItemCard.TaxesId3,
+                                  Tax1IsAccomulative = (bool)MsSalesOrderItemCard.Tax1IsAccomulative,
+                                  Tax2IsAccomulative = (bool)MsSalesOrderItemCard.Tax2IsAccomulative,
+                                  Tax3IsAccomulative = (bool)MsSalesOrderItemCard.Tax3IsAccomulative
+                              };
+
+            return OrderDetail;
+        }
+
+        public IEnumerable<getSalesOfferDetailDto> GetSalesOfferDetailBySalesOffertemCardId(int SalesOfferId)
+        {
+            var SalesOffer = from salesOffer in db.MsSalesOfferItemCard
+                             join itemCard in db.MsItemCard
+                              on salesOffer.ItemCardId equals itemCard.ItemCardId
+                             join itemUnit in db.MsItemUnit
+                             on salesOffer.UnitId equals itemUnit.UnitId
+                             join storePartation in db.MsPartition
+                             on salesOffer.StorePartId equals storePartation.StorePartId
+                             join store in db.MsStores
+                             on salesOffer.StoreId equals store.StoreId
+                             where salesOffer.SalesOfferId == SalesOfferId
+                             select new getSalesOfferDetailDto
+                             {
+                                 ItemCardId = (int)salesOffer.ItemCardId,
+                                 ItemCode = itemCard.ItemCode,
+                                 ItemDescA = itemCard.ItemDescA,
+                                 UnitNam = itemUnit.UnitNam,
+                                 PartCode = storePartation.PartCode,
+                                 PartDescA = storePartation.PartDescA,
+                                 StoreCode = store.StoreCode,
+                                 StoreDescA = store.StoreDescA,
+                                 Price = (decimal)salesOffer.Price,
+                                 PriceAfterRate = (decimal)salesOffer.PriceAfterRate,
+                                 QtyBeforRate = (decimal)salesOffer.QtyBeforRate,
+                                 Quantity = (decimal)salesOffer.Quantity,
+                                 UnitId = (int)salesOffer.UnitId,
+                                 UnitRate = (decimal)salesOffer.UnitRate,
+                                 StoreId = (int)salesOffer.StoreId,
+                                 StorePartId = (int)salesOffer.StorePartId,
+                                 DisPercent = (decimal)salesOffer.DisPercent,
+                                 DisAmount = (decimal)salesOffer.DisAmount,
+                                 Tax1Percent = (decimal)salesOffer.Tax1Percent,
+                                 Tax2Percent = (decimal)salesOffer.Tax2Percent,
+                                 Tax3Percent = (decimal)salesOffer.Tax3Percent,
+                                 TaxesId1 = (int)salesOffer.TaxesId1,
+                                 TaxesId2 = (int)salesOffer.TaxesId2,
+                                 TaxesId3 = (int)salesOffer.TaxesId3,
+                                 Tax1IsAccomulative = (bool)salesOffer.Tax1IsAccomulative,
+                                 Tax2IsAccomulative = (bool)salesOffer.Tax2IsAccomulative,
+                                 Tax3IsAccomulative = (bool)salesOffer.Tax3IsAccomulative
+                             };
+
+            return SalesOffer;
         }
         public IEnumerable<GetPartitionAndStoreDto> GetPartitionWithStores(int id , int storeid)
         {

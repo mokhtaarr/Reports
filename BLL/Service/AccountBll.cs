@@ -23,7 +23,10 @@ namespace BLL.Service
         private readonly IJwtAuthentication _jwtAuthentication;
         public readonly  SmartERPStandardContext _db;
 
-        public AccountBll(IJwtAuthentication jwtAuthentication, IRepository<GUsers> user, IRepository<HrEmployees> emp, IRepository<MsSettings> settines, IRepository<MsUserAuthentications> userauth, IRepository<MsStores> store, SmartERPStandardContext db)
+        EncryptDecrypt.MyEncryptor enc = new EncryptDecrypt.MyEncryptor("k$");
+
+
+        public AccountBll(IJwtAuthentication jwtAuthentication, IRepository<GUsers> user, IRepository<HrEmployees> emp, IRepository<MsSettings> settines, IRepository<MsUserAuthentications> userauth, IRepository<MsStores> store,SmartERPStandardContext db)
         {
             _jwtAuthentication = jwtAuthentication;
             _user = user;
@@ -36,7 +39,7 @@ namespace BLL.Service
         public string UserLogin(string username, string password)
         {
             ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
-            GUsers user = _user.Find(x => x.UserName.ToLower() == username.ToLower() && x.Password == password).FirstOrDefault();
+            GUsers user = _user.Find(x => x.UserName.ToLower() == username.ToLower() && enc.Decrypt( x.Password )== password).FirstOrDefault();
 
             if (user != null)
                 return _jwtAuthentication.Authenticate(user.UserId + "");
@@ -121,7 +124,7 @@ namespace BLL.Service
         {
 
             return (from auth in _db.MsUserAuthentications
-                    //join useres in _db.GUsers on auth.UserId equals useres.UserId
+                    join useres in _db.GUsers on auth.UserId equals useres.UserId
 
                     where auth.UserId == userid && (auth.AuthCode== "MinusNoteQty"  || auth.AuthCode == "ShoCustBlncs" || auth.AuthCode == "ShoVendBlncs" || auth.AuthCode == "ShowDisC" || auth.AuthCode == "dateChange" 
                     || auth.AuthCode == "SeeItemCost"  || auth.AuthCode == "SearchCurrentStor"|| auth.AuthCode == "UsePPolicy" || auth.AuthCode == "SeeSalesProfit" 
@@ -139,5 +142,40 @@ namespace BLL.Service
         }
 
 
+        public void Updatetoken(int userid, string token)
+        {
+            //var OldData = _db.GUsers.Find();
+
+
+            //var OldData = _db.GUsers.Select(a => new updatetoken
+            //{
+
+
+            //    userid = a.UserId,
+            //    costm2token = a.Custom2
+
+            //});
+
+
+
+            var OldData = _db.GUsers.Find(userid);
+
+            OldData.Custom2 = token;
+
+
+
+            //return OldData;
+
+
+
+            //OldData.UserId = dpt.userid;
+            //OldData.Custom2 = dpt.costm2token;
+
+            //_db.Entry(OldData).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+            //_db.Update(OldData);
+
+            _db.SaveChanges();
+        }
     }
 }

@@ -12,8 +12,10 @@ namespace BLL.DTO
         public decimal NetPrice { get; set; }
         public string DocTrno { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string AddField4_transport { get; set; }
+        public string AddField5_SalesManager { get; set; }
 
-       
+
 
 
     }

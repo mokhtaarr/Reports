@@ -45,6 +45,7 @@ namespace BLL.DTO
         public bool Tax1ForPurch { get; set; }
         public bool Tax2ForPurch { get; set; }
         public bool Tax3ForPurch { get; set; }
+        public bool IsCollection { get; set; }
         public string imagePath { get; set; }
 
         public int ProductTypeId { get; set; }

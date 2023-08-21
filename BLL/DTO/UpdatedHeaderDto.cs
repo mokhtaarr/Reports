@@ -31,6 +31,14 @@ namespace BLL.DTO
         public string Remarks { get; set; }
         public string AddField3 { get; set; }
         public DateTime InvDueDate { get; set; }
+        public int StoreId { get; set; }
+        public decimal ExpenValue { get; set; }
+       
+        //added on 1/8/2023
+
+        public int InvoiceType { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime TrDate { get; set; }
 
     }
 }

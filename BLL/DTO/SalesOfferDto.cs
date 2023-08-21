@@ -39,6 +39,10 @@ namespace BLL.DTO
         public string AddField3 { get; set; }
         public DateTime InvDueDate { get; set; }
 
+        public int StoreId { get; set; }
+        public decimal ExpenValue { get; set; }
+        public int InvoiceType { get; set; }
+
 
 
 

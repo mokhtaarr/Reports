@@ -4,9 +4,12 @@ C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcorea
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\EgyptionMixer2.png
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\EgyptionMixer3.png
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\GawharaShuffleWallCeramic,25×75,GeometricWhite.png
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\ideal.png
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\IdealPlanBasin44×56White.png
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\idealStandard.png
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\SadileIdealBlancWhite.png
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\ShattafaIdealPlayaWhite.png
+C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\sidialWhitePlan.png
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\WhiteIdealPlanToilet.png
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\WhiteIdealPlayaTank.png
 C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Reports\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\products\WhiteIdealStudioAccessories.png

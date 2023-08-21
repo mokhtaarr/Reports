@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using DAL.Models;
 using DAL.Models2;
+using DAL.Smtp;
 
 namespace DAL.Context
 {
@@ -849,8 +850,8 @@ namespace DAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SmartERPStandard;User Id=softgo;Password=A271185b;TrustServerCertificate=True;MultipleActiveResultSets=true");
+                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(SmtpConfig.GetConnectionString());
             }
         }
 
@@ -6079,7 +6080,7 @@ namespace DAL.Context
 
                 entity.Property(e => e.Custom1).HasMaxLength(20);
 
-                entity.Property(e => e.Custom2).HasMaxLength(20);
+                entity.Property(e => e.Custom2).HasMaxLength(500);
 
                 entity.Property(e => e.Custom3).HasMaxLength(20);
 
@@ -8186,7 +8187,7 @@ namespace DAL.Context
 
             modelBuilder.Entity<MobSalesInvoice>(entity =>
             {
-                entity.HasKey(e => e.InvId);
+                entity.HasKey(e => e.MobInvId);
 
                 entity.ToTable("Mob_SalesInvoice");
 
@@ -8512,7 +8513,7 @@ namespace DAL.Context
 
                 entity.HasOne(d => d.Inv)
                     .WithMany(p => p.MobSalesInvoiceItemCard)
-                    .HasForeignKey(d => d.InvId)
+                    .HasForeignKey(d => d.MobInvId)
                     .HasConstraintName("FK_Mob_SalesInvoiceItemCard_Mob_SalesInvoice");
             });
 

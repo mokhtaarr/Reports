@@ -28,6 +28,7 @@ namespace BLL.DTO
         public decimal Quantity5 { get; set; }
         public bool IsDefaultSale { get; set; }
         public bool IsDefaultPurchas { get; set; }
+        public string BarCode1 { get; set; }
 
     }
 }

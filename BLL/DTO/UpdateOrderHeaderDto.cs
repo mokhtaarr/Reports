@@ -6,14 +6,8 @@ namespace BLL.DTO
 {
     public class UpdateOrderHeaderDto
     {
-        public int Header_BookId { get; set; }
-        public int Header_TermId { get; set; }
-        public int Header_CurrencyId { get; set; }
-        public int Header_CustomerId { get; set; }
-        public int Header_RectSourceType { get; set; }
+        public DateTime Header_UpdateAt { get; set; }
         public decimal Header_Rate { get; set; }
-        public string Header_CreatedBy { get; set; }
-        public DateTime Header_CreatedAt { get; set; }
         public decimal Header_InvTotal { get; set; }
         public decimal Header_DiscAmount { get; set; }
         public decimal Header_DiscPercent { get; set; }
@@ -35,5 +29,16 @@ namespace BLL.DTO
         public string Remarks { get; set; }
         public string AddField3 { get; set; }
         public DateTime InvDueDate { get; set; }
+        public int StoreId { get; set; }
+        public decimal ExpenValue { get; set; }
+   
+        //added on 1/8/2023
+
+        public int InvoiceType { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime TrDate { get; set; }
+
+
+
     }
 }

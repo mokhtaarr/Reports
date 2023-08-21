@@ -10,6 +10,7 @@ using DAL.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using Static.Helper;
 
@@ -71,20 +72,31 @@ namespace Reports.Controllers
                 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetCustomerCategory()
+        {
+            var CustomerCategory = await _context.MsCustomerCategory.Select(c => new { c.CustomerCatId, c.CatDescA, c.CatDescE }).ToListAsync();
+            return Ok(CustomerCategory);
+
+        }
+
         [HttpPost, AllowAnonymous]
         public async Task<IActionResult> AddCustomer(AddCustomerDto dto)
         {
+           
             var customer = new MsCustomer()
             {
                 CustomerCode = dto.CustomerCode,
                 CustomerDescA = dto.CustomerDescA,
                 CustomerDescE = dto.CustomerDescE,
+                CustomerCatId = dto.CustomerCatId,
                 Tel = dto.Tel,
                 Tel2 = dto.Te2,
                 Email = dto.Email,
                 Address = dto.Address,
                 IsMobile = true
             };
+
 
             await _context.MsCustomer.AddAsync(customer);
             _context.SaveChanges();
@@ -101,6 +113,7 @@ namespace Reports.Controllers
 
             var customerName = new addCustomerMessageDto { };
             customerName.CustomerDescA = customer.CustomerDescA;
+            //customerName.msCustomerCategories = CustomerCategory;
             customerName.Message = "تم اضافه العميل بنجاح";
 
             return Ok(customerName);

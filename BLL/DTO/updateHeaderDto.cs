@@ -8,5 +8,7 @@ namespace BLL.DTO
     {   
         public string message { get; set; }
         public int invid { get; set; }
+        public int SalesOrderId { get; set; }
+        public int SalesOfferId { get; set; }
     }
 }
