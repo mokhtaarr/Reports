@@ -208,6 +208,12 @@ namespace DAL.Context
         public virtual DbSet<LaPropSerial> LaPropSerial { get; set; }
         public virtual DbSet<MobSalesInvoice> MobSalesInvoice { get; set; }
         public virtual DbSet<MobSalesInvoiceItemCard> MobSalesInvoiceItemCard { get; set; }
+        public virtual DbSet<MsReturnSalesReq> MsReturnSalesReq { get; set; } 
+
+        public virtual DbSet<MsReturnSalesReqItemCard> MsReturnSalesReqItemCard { get; set; }
+        
+        public virtual DbSet<ReturnSalesReqSearch> ReturnSalesReqSearch { get; set; }
+
         public virtual DbSet<MsAdjustMents> MsAdjustMents { get; set; }
         public virtual DbSet<MsAttachments> MsAttachments { get; set; }
         public virtual DbSet<MsBankAccount> MsBankAccount { get; set; }
@@ -852,6 +858,8 @@ namespace DAL.Context
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer(SmtpConfig.GetConnectionString());
+                optionsBuilder.EnableSensitiveDataLogging(); // تمكين تسجيل البيانات الحساسة
+
             }
         }
 
@@ -15278,6 +15286,354 @@ namespace DAL.Context
                     .HasConstraintName("FK_Ms_SalesInvoice_Ms_SalesOffer");
             });
 
+            modelBuilder.Entity<MsReturnSalesReq>(entity =>
+            {
+                entity.HasKey(e => e.ReqsalesId);
+
+                entity.ToTable("Ms_ReturnSalesReq");
+
+                entity.Property(e => e.AccountId).HasComment("to attach any document in database to receiptnote");
+
+                entity.Property(e => e.AccountTableName)
+                    .HasMaxLength(100)
+                    .HasComment("to attach any document in database to receiptnote");
+
+                entity.Property(e => e.AddField3).HasMaxLength(100);
+
+                entity.Property(e => e.AddField4).HasMaxLength(100);
+
+                entity.Property(e => e.AddField5).HasMaxLength(100);
+
+                entity.Property(e => e.AddField6).HasMaxLength(100);
+
+                entity.Property(e => e.AddField7).HasMaxLength(100);
+
+                entity.Property(e => e.Aid).HasColumnName("AId");
+
+                entity.Property(e => e.BankTransfer).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.CloseDate).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.Closed).HasComment("True  Closed ;  False  Not Closed");
+
+                entity.Property(e => e.Commision).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.CreatedAt).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.CreatedBy).HasMaxLength(20);
+
+                entity.Property(e => e.DbtableId)
+                    .HasColumnName("DBTableId")
+                    .HasComment("to attach any document in database to receiptnote");
+
+                entity.Property(e => e.DbtableName)
+                    .HasColumnName("DBTableName")
+                    .HasMaxLength(100)
+                    .HasComment("to attach any document in database to receiptnote");
+
+                entity.Property(e => e.DeletedAt).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.DeletedBy).HasMaxLength(20);
+
+                entity.Property(e => e.DiscAmount).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DiscAmount2).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DiscAmount3).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DiscAmount4).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DiscPercent).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DiscPercent2).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DiscPercent3).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DiscPercent4).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.EtaxReference).HasMaxLength(200);
+
+                entity.Property(e => e.EtaxRemarks).HasMaxLength(100);
+
+                entity.Property(e => e.EtaxSentTime).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.ExpenValue).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.ExpenValueBeforCurr).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.ExpenValueWithCurr).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.InvDescA).HasMaxLength(100);
+
+                entity.Property(e => e.InvDescE).HasMaxLength(100);
+
+                entity.Property(e => e.InvDueDate).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.InvQuantity).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.InvTotal).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.InvoiceType).HasComment("0  Cash ; 1  Due ");
+
+                entity.Property(e => e.IsPosted).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.IsPrinted).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.ItemCommision).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.LastUpdateTime)
+                    .IsRowVersion()
+                    .IsConcurrencyToken();
+
+                entity.Property(e => e.ManualTrNo).HasMaxLength(40);
+
+                entity.Property(e => e.NetPrice).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.NetPriceBeforCurr).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.NotPaid).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PaidPrice).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PaidPriceVisa).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PayMethodDatafield).HasMaxLength(250);
+
+                entity.Property(e => e.PayMethodDatafield2).HasMaxLength(250);
+
+                entity.Property(e => e.PayMethodDatafield3).HasMaxLength(250);
+
+                entity.Property(e => e.PayMethodPercent).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PayMethodPercent2).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PayMethodPercent3).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PayMethodValue).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PayMethodValue2).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PayMethodValue3).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PermPrintedAt).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.PostedDate).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.Postedby).HasMaxLength(20);
+
+                entity.Property(e => e.PriceAfterTax).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Rate).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Remarks).HasMaxLength(200);
+
+                entity.Property(e => e.TaxValue1).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TaxValue2).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TaxValue3).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TermCostCenterValue).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalItemTax1).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalItemTax2).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalItemTax3).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalItemsCost).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalItemsProfit).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalJobOrders).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalProfitPrice).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalQtyCar).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalQtyNoVehicl).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalQtyPump).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalServicePrice).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TotalTaxValu).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TrDate).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.UncloseDate).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.UpdateAt).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.UpdateBy).HasMaxLength(20);
+            });
+
+
+
+            modelBuilder.Entity<MsReturnSalesReqItemCard>(entity =>
+            {
+                entity.HasKey(e => e.SalesReqItemCardId);
+
+                entity.ToTable("Ms_ReturnSalesReqItemCard");
+
+                entity.Property(e => e.AccountId).HasComment("to attach any document in database to receiptnote");
+
+                entity.Property(e => e.AccountTableName)
+                    .HasMaxLength(100)
+                    .HasComment("to attach any document in database to receiptnote");
+
+                entity.Property(e => e.Aid).HasColumnName("AId");
+
+                entity.Property(e => e.BarCode).HasMaxLength(60);
+
+                entity.Property(e => e.BatchNumberFifoOrLifo).HasMaxLength(20);
+
+                entity.Property(e => e.CityIdfrom).HasColumnName("CityIDFrom");
+
+                entity.Property(e => e.CityIdto).HasColumnName("CityIDTo");
+
+                entity.Property(e => e.CoastAverage).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.CoastAverageUnit).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.CommisionPercent).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.CommisionValue).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DbtableId)
+                    .HasColumnName("DBTableId")
+                    .HasComment("to attach any document in database to receiptnote");
+
+                entity.Property(e => e.DbtableName)
+                    .HasColumnName("DBTableName")
+                    .HasMaxLength(100)
+                    .HasComment("to attach any document in database to receiptnote");
+
+                entity.Property(e => e.DisAmount).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DisAmountAfterRate).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DisPercent).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.DriverName).HasMaxLength(100);
+
+                entity.Property(e => e.ExpenseShare).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.ExpenseShareAfterCurr).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.ExpenseShareAfterCurrUnit).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.ExpenseShareUnit).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Fifocost)
+                    .HasColumnName("FIFOCost")
+                    .HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.FifocostUnit)
+                    .HasColumnName("FIFOCostUnit")
+                    .HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.IsBonus).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.ItemCardDesc).HasMaxLength(100);
+
+                entity.Property(e => e.ItemCardDescE).HasMaxLength(100);
+
+                entity.Property(e => e.JobProductId).HasColumnName("jobProductId");
+
+                entity.Property(e => e.Kirat).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.LastCost).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.LastCostUnit).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.LastUpdateTime)
+                    .IsRowVersion()
+                    .IsConcurrencyToken();
+
+                entity.Property(e => e.Lifocost)
+                    .HasColumnName("LIFOCost")
+                    .HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.LifocostUnit)
+                    .HasColumnName("LIFOCostUnit")
+                    .HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.MainDiscPercent).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.MainDiscValue).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.OfferPrice).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Price).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PriceAfterCurr).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PriceAfterCurrUnit).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PriceAfterExpensAfterCurrUnit).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PriceAfterExpense).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PriceAfterExpenseAfterCurr).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PriceAfterExpenseUnit).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.PriceAfterRate).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.ProfitPrice).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.QtyBeforRate).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.QtyIunit2)
+                    .HasColumnName("QtyIUnit2")
+                    .HasColumnType("numeric(38, 10)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.QtyOutBeforRate).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Quantity).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.QuantityOut).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Remarks).HasMaxLength(100);
+
+                entity.Property(e => e.Remarks1).HasMaxLength(100);
+
+                entity.Property(e => e.Remarks2).HasMaxLength(100);
+
+                entity.Property(e => e.Remarks3).HasMaxLength(100);
+
+                entity.Property(e => e.ReturnQty).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.ReturnQtyBeforRate).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.ServicePrice).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Tax1Percent).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Tax2Percent).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.Tax3Percent).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TaxValue1).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TaxValue2).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TaxValue3).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TaxableValue).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.TimeEnd).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.UnitRate).HasColumnType("numeric(38, 10)");
+
+                entity.Property(e => e.VjorderId).HasColumnName("VJOrderId");
+            });
+
+
+
+
             modelBuilder.Entity<MsSalesInvoiceCostDeliver>(entity =>
             {
                 entity.HasKey(e => e.SaleNoCostDelId);
@@ -15497,9 +15853,10 @@ namespace DAL.Context
                 entity.Property(e => e.VjorderId).HasColumnName("VJOrderId");
 
                 entity.HasOne(d => d.Inv)
-                    .WithMany(p => p.MsSalesInvoiceItemCard)
-                    .HasForeignKey(d => d.InvId)
-                    .HasConstraintName("FK_InvoiceItemCard_Ms_SalesInvoice");
+                .WithMany(p => p.MsSalesInvoiceItemCard)
+                .HasForeignKey(d => d.InvId)
+                .HasConstraintName("FK_InvoiceItemCard_Ms_SalesInvoice");
+
 
                 entity.HasOne(d => d.ItemCard)
                     .WithMany(p => p.MsSalesInvoiceItemCard)
@@ -15511,6 +15868,9 @@ namespace DAL.Context
                     .HasForeignKey(d => d.UnitId)
                     .HasConstraintName("FK_Ms_SalesInvoiceItemCard_Ms_ItemUnit");
             });
+
+
+
 
             modelBuilder.Entity<MsSalesInvoiceItemCardDeleted>(entity =>
             {
@@ -25599,7 +25959,13 @@ namespace DAL.Context
                 entity.Property(e => e.TrDate).HasColumnType("smalldatetime");
             });
 
-            modelBuilder.Entity<SalesInvCustSearch>(entity =>
+            modelBuilder.Entity<ReturnSalesReqSearch>(entity =>
+            {
+                entity.HasNoKey();
+
+            });
+
+          modelBuilder.Entity<SalesInvCustSearch>(entity =>
             {
                 entity.HasNoKey();
 

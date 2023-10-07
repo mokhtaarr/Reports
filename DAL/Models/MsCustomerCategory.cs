@@ -23,6 +23,7 @@ namespace DAL.Models
         public string UpdateBy { get; set; }
         public DateTime? UpdateAt { get; set; }
         public string DeletedBy { get; set; }
+        public byte SalPrice { get; set; }
         public DateTime? DeletedAt { get; set; }
 
         public virtual ICollection<MsCustomer> MsCustomer { get; set; }

@@ -16,5 +16,10 @@ namespace Static.VM
         public decimal? CoastAVG { get; set; }
         public object Vendors { get; set; }
         public string image { get; set; }
+        public decimal? QtyInNotebook { get; set; }
+        public decimal? TotalQtyInNotebook { get; set; }
+        public string StoreDescA { get; set; }
+        public string PartDescA { get; set; }
+
     }
 }

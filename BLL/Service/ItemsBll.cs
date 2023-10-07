@@ -1,8 +1,11 @@
-﻿using BLL.Authentication;
+﻿using Azure;
+using BLL.Authentication;
 using BLL.DTO;
 using DAL.Context;
 using DAL.Models;
 using DAL.Repository;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client.Extensions.Msal;
 using Static.Helper;
 using Static.VM;
@@ -18,52 +21,377 @@ namespace BLL.Service
     public class ItemsBll
     {
         private readonly IRepository<MsItemCard> _repository;
+        private readonly IRepository<MsItemPartition> _msItemPartitionRepository;
+        private readonly IRepository<MsItemImages> _msItemImagesRepository;
         //private readonly IRepository<MsItemVendors> _itemVendors;
         //private readonly IRepository<MsVendor> _vendor;
         //private readonly IRepository<MsItemImages> _ItemImages;
         private SmartERPStandardContext db;
 
-        public ItemsBll(IRepository<MsItemCard> repository , SmartERPStandardContext _db)
+        public ItemsBll(IRepository<MsItemCard> repository , SmartERPStandardContext _db, 
+            IRepository<MsItemPartition> msItemPartitionRepository,IRepository<MsItemImages> msItemImagesRepository)
         {
             _repository = repository;
             db = _db;
-         
+            _msItemPartitionRepository = msItemPartitionRepository;
+            _msItemImagesRepository = msItemImagesRepository;
         }
 
         public ResultDTO GetAllItems(int? Page_No, int? Size_No)
         {
             ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+
             try
             {
-                int Size_Of_Page = (Size_No ?? 9);
-                int No_Of_Page = (Page_No ?? 1);
+                int Size_Of_Page = Size_No ?? 9;
+                int No_Of_Page = Page_No ?? 1;
 
-                List<VendorVM> data = _repository.GetAll().ToList().Select(p => new VendorVM
-                {
-                    ItemCardId = p.ItemCardId,
-                    itemcode = p.ItemCode,
-                    itemname = p.ItemDescA,
-                    Qty = p.QtyInBox,
-                    Price = p.FirstPrice,
-                    Price2 = p.SecandPrice,
-                    Price3 = p.ThirdPrice,
-                    CoastAVG = p.CoastAverage,
-                    Vendors = GetVendors(p.ItemCardId),
-                    image = GetImages(p.ItemCardId),
-                }).Skip((No_Of_Page - 1) * Size_Of_Page).Take(Size_Of_Page).ToList();
+
+                var data = (from itemCard in db.MsItemCard
+                            join itemImages in db.MsItemImages
+                            on itemCard.ItemCardId equals itemImages.ItemCardId into itemImagesGroup
+                            from img in itemImagesGroup.DefaultIfEmpty() // هذا هو ال left join
+                            select new VendorVM
+                            {
+                                ItemCardId = itemCard.ItemCardId,
+                                itemcode = itemCard.ItemCode,
+                                itemname = itemCard.ItemDescA,
+                                Qty = itemCard.QtyInBox,
+                                Price = itemCard.FirstPrice,
+                                Price2 = itemCard.SecandPrice,
+                                Price3 = itemCard.ThirdPrice,
+                                CoastAVG = itemCard.CoastAverage,
+                                TotalQtyInNotebook = db.MsItemPartition.Where(item => item.ItemCardId == itemCard.ItemCardId)
+                                               .Sum(item => item.QtyInNotebook),
+                                image = img != null ? img.ImgPath : null // يمكنك تضمين الصورة هنا
+                            })
+                            .Skip((No_Of_Page - 1) * Size_Of_Page)
+                            .Take(Size_Of_Page)
+                            .ToList();
 
                 resultDTO.Page_No = No_Of_Page;
                 resultDTO.Size_No = Size_Of_Page;
                 resultDTO.data = data;
                 resultDTO.Status = true;
                 resultDTO.Message = "تم عرض البيانات بنجاح";
+
                 return resultDTO;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return resultDTO;
+                // يجب التعامل مع الاستثناءات هنا، يمكنك إعادة رمية الاستثناء أو التسجيل والعمليات اللازمة.
+                throw ex;
             }
         }
+
+        //public ResultDTO GetAllItems(int? Page_No, int? Size_No)
+        //{
+        //    ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+
+        //    try
+        //    {
+        //        int Size_Of_Page = Size_No ?? 9;
+        //        int No_Of_Page = Page_No ?? 1;
+
+        //        var data = (from itemCard in db.MsItemCard
+        //                    join itemPartition in db.MsItemPartition
+        //                    on itemCard.ItemCardId equals itemPartition.ItemCardId
+        //                    join partition in db.MsPartition 
+        //                    on itemPartition.StorePartId equals partition.StorePartId
+        //                    join stores in db.MsStores
+        //                    on itemPartition.StoreId equals stores.StoreId
+        //                    join itemImages in db.MsItemImages
+        //                    on itemCard.ItemCardId equals itemImages.ItemCardId into itemImagesGroup
+        //                    from img in itemImagesGroup.DefaultIfEmpty() // هذا هو ال left join
+        //                    select new VendorVM
+        //                    {
+        //                        ItemCardId = itemCard.ItemCardId,
+        //                        itemcode = itemCard.ItemCode,
+        //                        itemname = itemCard.ItemDescA,
+        //                        Qty = itemCard.QtyInBox,
+        //                        Price = itemCard.FirstPrice,
+        //                        Price2 = itemCard.SecandPrice,
+        //                        Price3 = itemCard.ThirdPrice,
+        //                        CoastAVG = itemCard.CoastAverage,
+        //                        StoreDescA = stores.StoreDescA,
+        //                        PartDescA = partition.PartDescA,
+        //                        QtyInNotebook = itemPartition.QtyInNotebook,
+        //                        TotalQtyInNotebook = db.MsItemPartition.Where(item => item.ItemCardId == itemCard.ItemCardId)
+        //                                       .Sum(item => item.QtyInNotebook),
+        //                        image = img != null ? img.ImgPath : null // يمكنك تضمين الصورة هنا
+        //                    })
+        //                    .Skip((No_Of_Page - 1) * Size_Of_Page)
+        //                    .Take(Size_Of_Page)
+        //                    .ToList();
+
+        //        resultDTO.Page_No = No_Of_Page;
+        //        resultDTO.Size_No = Size_Of_Page;
+        //        resultDTO.data = data;
+        //        resultDTO.Status = true;
+        //        resultDTO.Message = "تم عرض البيانات بنجاح";
+
+        //        return resultDTO;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // يجب التعامل مع الاستثناءات هنا، يمكنك إعادة رمية الاستثناء أو التسجيل والعمليات اللازمة.
+        //        throw ex;
+        //    }
+        //}
+
+
+        //public ResultDTO GetAllItems(int? Page_No, int? Size_No)
+        //{
+        //    ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+
+        //    try
+        //    {
+        //        int Size_Of_Page = Size_No ?? 9;
+        //        int No_Of_Page = Page_No ?? 1;
+
+        //        var data = (from itemCard in db.MsItemCard
+        //                    join itemPartition in db.MsItemPartition
+        //                    on itemCard.ItemCardId equals itemPartition.ItemCardId
+        //                    select new VendorVM
+        //                    {
+        //                        ItemCardId = itemCard.ItemCardId,
+        //                        itemcode = itemCard.ItemCode,
+        //                        itemname = itemCard.ItemDescA,
+        //                        Qty = itemCard.QtyInBox,
+        //                        Price = itemCard.FirstPrice,
+        //                        Price2 = itemCard.SecandPrice,
+        //                        Price3 = itemCard.ThirdPrice,
+        //                        CoastAVG = itemCard.CoastAverage,
+        //                        QtyInNotebook = db.MsItemPartition
+        //                                        .Where(item => item.ItemCardId == itemCard.ItemCardId)
+        //                                        .Sum(item => item.QtyInNotebook)
+        //                    })
+        //                    .Skip((No_Of_Page - 1) * Size_Of_Page)
+        //                    .Take(Size_Of_Page)
+        //                    .ToList();
+
+        //        resultDTO.Page_No = No_Of_Page;
+        //        resultDTO.Size_No = Size_Of_Page;
+        //        resultDTO.data = data;
+        //        resultDTO.Status = true;
+        //        resultDTO.Message = "تم عرض البيانات بنجاح";
+
+        //        return resultDTO;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // يجب التعامل مع الاستثناءات هنا، يمكنك إعادة رمية الاستثناء أو التسجيل والعمليات اللازمة.
+        //        throw ex;
+        //    }
+        //}
+
+
+
+        //public decimal GetPartitionCount(int itemCardId)
+        //{
+        //    var totalItem = db.MsItemPartition
+        //        .Where(item => item.ItemCardId == itemCardId)
+        //        .Sum(item => item.QtyInNotebook);
+
+        //    return (decimal)totalItem;
+        //}
+        //public ResultDTO GetAllItems(int? Page_No, int? Size_No)
+        //{
+        //    ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+
+        //    try
+        //    {
+        //        int Size_Of_Page = Size_No ?? 9;
+        //        int No_Of_Page = Page_No ?? 1;
+
+
+        //        var data = (from itemCard in db.MsItemCard
+        //                    join itemPartition in db.MsItemPartition 
+        //                    on itemCard.ItemCardId equals itemPartition.ItemCardId 
+        //                    select new VendorVM
+        //                    {
+        //                        ItemCardId = itemCard.ItemCardId,
+        //                        itemcode = itemCard.ItemCode,
+        //                        itemname = itemCard.ItemDescA,
+        //                        Qty = itemCard.QtyInBox,
+        //                        Price = itemCard.FirstPrice,
+        //                        Price2 = itemCard.SecandPrice,
+        //                        Price3 = itemCard.ThirdPrice,
+        //                        CoastAVG = itemCard.CoastAverage,
+        //                        QtyInNotebook = GetPartitionCount(itemCard.ItemCardId),
+        //                    })
+        //                    .Skip((No_Of_Page - 1) * Size_Of_Page)
+        //                    .Take(Size_Of_Page)
+        //                    .ToList();
+
+        //        resultDTO.Page_No = No_Of_Page;
+        //        resultDTO.Size_No = Size_Of_Page;
+        //        resultDTO.data = data;
+        //        resultDTO.Status = true;
+        //        resultDTO.Message = "تم عرض البيانات بنجاح";
+
+        //        return resultDTO;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return resultDTO;
+        //    }
+        //}
+
+        //public ResultDTO GetAllItems(int? Page_No, int? Size_No)
+        //{
+        //    ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+        //    try
+        //    {
+        //        int Size_Of_Page = (Size_No ?? 9);
+        //        int No_Of_Page = (Page_No ?? 1);
+
+        //        // استعلام لجلب البيانات من _msItemPartitionRepository
+        //        var partitionData = _msItemPartitionRepository.GetAll();
+
+        //        List<VendorVM> data = _repository.GetAll()
+        //            .GroupJoin(
+        //                _msItemImagesRepository.GetAll(),
+        //                p => p.ItemCardId,
+        //                img => img.ItemCardId,
+        //                (p, images) => new { p, images })
+        //            .SelectMany(
+        //                x => x.images.DefaultIfEmpty(),
+        //                (combined, img) => new
+        //                {
+        //                    combined.p,
+        //                    combined.images,
+        //                    img
+        //                })
+        //            .Join(
+        //                partitionData, // استخدام البيانات من _msItemPartitionRepository
+        //                combined => combined.p.ItemCardId,
+        //                mp => mp.ItemCardId,
+        //                (combined, mp) => new VendorVM
+        //                {
+        //                    ItemCardId = combined.p.ItemCardId,
+        //                    itemcode = combined.p.ItemCode,
+        //                    itemname = combined.p.ItemDescA,
+        //                    Qty = combined.p.QtyInBox,
+        //                    Price = combined.p.FirstPrice,
+        //                    Price2 = combined.p.SecandPrice,
+        //                    Price3 = combined.p.ThirdPrice,
+        //                    CoastAVG = combined.p.CoastAverage,
+        //                    QtyInNotebook = mp.QtyInNotebook, // هنا نأخذ الـ QtyInNotebook من جدول msitempartition
+        //                    image = combined.img != null ? combined.img.ImgPath : null,
+        //                })
+        //            .Skip((No_Of_Page - 1) * Size_Of_Page)
+        //            .Take(Size_Of_Page)
+        //            .ToList();
+
+        //        resultDTO.Page_No = No_Of_Page;
+        //        resultDTO.Size_No = Size_Of_Page;
+        //        resultDTO.data = data;
+        //        resultDTO.Status = true;
+        //        resultDTO.Message = "تم عرض البيانات بنجاح";
+        //        return resultDTO;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return resultDTO;
+        //    }
+        //}
+
+        //public ResultDTO GetAllItems(int? Page_No, int? Size_No)
+        //{
+        //    ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+        //    try
+        //    {
+        //        int Size_Of_Page = (Size_No ?? 9);
+        //        int No_Of_Page = (Page_No ?? 1);
+
+        //        List<VendorVM> data = _repository.GetAll()
+        //            .GroupJoin(
+        //                _msItemImagesRepository.GetAll(),
+        //                p => p.ItemCardId,
+        //                img => img.ItemCardId,
+        //                (p, images) => new { p, images })
+        //            .SelectMany(
+        //                x => x.images.DefaultIfEmpty(),
+        //                (combined, img) => new
+        //                {
+        //                    combined.p,
+        //                    combined.images,
+        //                    img
+        //                })
+        //            .Join(
+        //                _msItemPartitionRepository.GetAll(),
+        //                combined => combined.p.ItemCardId,
+        //                mp => mp.ItemCardId,
+        //                (combined, mp) => new VendorVM
+        //                {
+        //                    ItemCardId = combined.p.ItemCardId,
+        //                    itemcode = combined.p.ItemCode,
+        //                    itemname = combined.p.ItemDescA,
+        //                    Qty = combined.p.QtyInBox,
+        //                    Price = combined.p.FirstPrice,
+        //                    Price2 = combined.p.SecandPrice,
+        //                    Price3 = combined.p.ThirdPrice,
+        //                    CoastAVG = combined.p.CoastAverage,
+        //                    QtyInNotebook = mp.QtyInNotebook, // هنا نأخذ الـ QtyInNotebook من جدول msitempartition
+        //                    image = combined.img != null ? combined.img.ImgPath : null,
+        //                })
+        //            .Skip((No_Of_Page - 1) * Size_Of_Page)
+        //            .Take(Size_Of_Page)
+        //            .ToList();
+
+        //        resultDTO.Page_No = No_Of_Page;
+        //        resultDTO.Size_No = Size_Of_Page;
+        //        resultDTO.data = data;
+        //        resultDTO.Status = true;
+        //        resultDTO.Message = "تم عرض البيانات بنجاح";
+        //        return resultDTO;
+
+
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return resultDTO;
+        //    }
+        //}
+
+
+        //public ResultDTO GetAllItems(int? Page_No, int? Size_No)
+        //{
+        //    ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+        //    try
+        //    {
+        //        int Size_Of_Page = (Size_No ?? 9);
+        //        int No_Of_Page = (Page_No ?? 1);
+
+        //        List<VendorVM> data = _repository.GetAll().ToList().Select(p => new VendorVM
+        //        {
+        //            ItemCardId = p.ItemCardId,
+        //            itemcode = p.ItemCode,
+        //            itemname = p.ItemDescA,
+        //            Qty = p.QtyInBox,
+        //            Price = p.FirstPrice,
+        //            Price2 = p.SecandPrice,
+        //            Price3 = p.ThirdPrice,
+        //            CoastAVG = p.CoastAverage,
+        //            ////Vendors = GetVendors(p.ItemCardId),
+        //            image = GetImages(p.ItemCardId),
+        //        }).Skip((No_Of_Page - 1) * Size_Of_Page).Take(Size_Of_Page).ToList();
+
+        //        resultDTO.Page_No = No_Of_Page;
+        //        resultDTO.Size_No = Size_Of_Page;
+        //        resultDTO.data = data;
+        //        resultDTO.Status = true;
+        //        resultDTO.Message = "تم عرض البيانات بنجاح";
+        //        return resultDTO;
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return resultDTO;
+        //    }
+        //}
 
         public object GetVendors(int ItemCardId)
         {
@@ -92,35 +420,138 @@ namespace BLL.Service
 
         public ResultDTO barcode(string qr)
         {
-            ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+            ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطأ في البيانات" };
+
             try
             {
-                VendorVM data = _repository.Find(x => x.ItemCode == qr).Select(p => new VendorVM
-                {
-                    ItemCardId = p.ItemCardId,
-                    itemcode = p.ItemCode,
-                    itemname = p.ItemDescA,
-                    Qty = p.QtyInBox,
-                    Price = p.FirstPrice,
-                    Price2 = p.SecandPrice,
-                    Price3 = p.ThirdPrice,
-                    CoastAVG = p.CoastAverage,
-                    Vendors = GetVendors(p.ItemCardId),
-                    image = p.TaxItemCode,
-                }).FirstOrDefault();
+                VendorVM data = (from itemCard in db.MsItemCard
+                                 join itemPartition in db.MsItemPartition
+                                 on itemCard.ItemCardId equals itemPartition.ItemCardId
+                                 join partition in db.MsPartition
+                                 on itemPartition.StorePartId equals partition.StorePartId
+                                 join stores in db.MsStores
+                                 on itemPartition.StoreId equals stores.StoreId
+                                 join itemImages in db.MsItemImages
+                                 on itemCard.ItemCardId equals itemImages.ItemCardId into itemImagesGroup
+                                 from img in itemImagesGroup.DefaultIfEmpty() // هذا هو ال left join
+                                 where itemCard.ItemCode == qr
+                                 select new VendorVM
+                                 {
+                                     ItemCardId = itemCard.ItemCardId,
+                                     itemcode = itemCard.ItemCode,
+                                     itemname = itemCard.ItemDescA,
+                                     Qty = itemCard.QtyInBox,
+                                     Price = itemCard.FirstPrice,
+                                     Price2 = itemCard.SecandPrice,
+                                     Price3 = itemCard.ThirdPrice,
+                                     CoastAVG = itemCard.CoastAverage,
+                                     StoreDescA = stores.StoreDescA,
+                                     PartDescA = partition.PartDescA,
+                                     QtyInNotebook = itemPartition.QtyInNotebook,
+                                     TotalQtyInNotebook = db.MsItemPartition.Where(item => item.ItemCardId == itemCard.ItemCardId)
+                                               .Sum(item => item.QtyInNotebook),
+                                     image = img != null ? img.ImgPath : null // يمكنك تضمين الصورة هنا
 
-                resultDTO.data = data;
-                resultDTO.Status = true;
-                resultDTO.Message = "تم عرض البيانات بنجاح";
+                                 })
+                            .FirstOrDefault();
+
+                if (data != null)
+                {
+                    resultDTO.data = data;
+                    resultDTO.Status = true;
+                    resultDTO.Message = "تم عرض البيانات بنجاح";
+                }
+                else
+                {
+                    resultDTO.Message = "لم يتم العثور على بيانات لهذا الباركود";
+                }
+
                 return resultDTO;
             }
-            catch
+            catch (Exception ex)
             {
-                return resultDTO;
+                // يجب التعامل مع الاستثناءات هنا، يمكنك إعادة رمية الاستثناء أو التسجيل والعمليات اللازمة.
+                throw ex;
             }
         }
 
-      
+
+        //public ResultDTO barcode(string qr)
+        //{
+        //    ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطأ في البيانات" };
+        //    try
+        //    {
+        //        VendorVM data = _repository.Find(x => x.ItemCode == qr)
+        //            .Join(
+        //                _msItemPartitionRepository.GetAll(),
+        //                p => p.ItemCardId,
+        //                mp => mp.ItemCardId,
+        //                (p, mp) => new VendorVM
+        //                {
+        //                    ItemCardId = p.ItemCardId,
+        //                    itemcode = p.ItemCode,
+        //                    itemname = p.ItemDescA,
+        //                    Qty = p.QtyInBox,
+        //                    Price = p.FirstPrice,
+        //                    Price2 = p.SecandPrice,
+        //                    Price3 = p.ThirdPrice,
+        //                    CoastAVG = p.CoastAverage,
+        //                    Vendors = GetVendors(p.ItemCardId),
+        //                    image = p.TaxItemCode,
+        //                    QtyInNotebook = db.MsItemPartition.Where(mp=>mp.ItemCardId == mp.ItemCardId).Sum(mp=>mp.QtyInNotebook), // هنا نأخذ الـ QtyInNotebook من جدول msitempartition
+        //                })
+        //            .FirstOrDefault();
+
+        //        if (data != null)
+        //        {
+        //            resultDTO.data = data;
+        //            resultDTO.Status = true;
+        //            resultDTO.Message = "تم عرض البيانات بنجاح";
+        //        }
+        //        else
+        //        {
+        //            resultDTO.Message = "لم يتم العثور على بيانات لهذا الباركود";
+        //        }
+
+        //        return resultDTO;
+        //    }
+        //    catch
+        //    {
+        //        return resultDTO;
+        //    }
+        //}
+
+        //public ResultDTO barcode(string qr)
+        //{
+        //    ResultDTO resultDTO = new ResultDTO() { Status = false, Message = "خطا بالبيانات" };
+        //    try
+        //    {
+        //        VendorVM data = _repository.Find(x => x.ItemCode == qr).Select(p => new VendorVM
+        //        {
+        //            ItemCardId = p.ItemCardId,
+        //            itemcode = p.ItemCode,
+        //            itemname = p.ItemDescA,
+        //            Qty = p.QtyInBox,
+        //            Price = p.FirstPrice,
+        //            Price2 = p.SecandPrice,
+        //            Price3 = p.ThirdPrice,
+        //            CoastAVG = p.CoastAverage,
+        //            Vendors = GetVendors(p.ItemCardId),
+        //            image = p.TaxItemCode,
+        //        }).FirstOrDefault();
+
+        //        resultDTO.data = data;
+        //        resultDTO.Status = true;
+        //        resultDTO.Message = "تم عرض البيانات بنجاح";
+        //        return resultDTO;
+        //    }
+        //    catch
+        //    {
+        //        return resultDTO;
+        //    }
+        //}
+
+
 
         public ItemNameDto GetItems(int? Page_No, int? Size_No)
         {
@@ -183,6 +614,79 @@ namespace BLL.Service
 
             return itmDto;
         }
+
+    
+
+        //public ItemNameDto GetItemsWithFilter(int? Page_No, int? Size_No, int? storepartId = null, int? itemCategoryId = null)
+        //{
+        //    ItemNameDto itmDto = new ItemNameDto();
+        //    int Size_Of_Page = (Size_No ?? 9);
+        //    int No_Of_Page = (Page_No ?? 1);
+
+        //    var query = (
+        //                     from item in db.MsItemCard
+        //                     join img in db.MsItemImages
+        //                     on item.ItemCardId equals img.ItemCardId into itemImages
+        //                     from img in itemImages.DefaultIfEmpty()
+
+        //                     select new 
+        //                     {
+        //                         ItemCardId = item.ItemCardId,
+        //                         ItemDescA = item.ItemDescA,
+        //                         ItemDescE = item.ItemDescE,
+        //                         ItemCode = item.ItemCode,
+        //                         ItemType = (int)item.ItemType,
+        //                         IsSerialItem = (bool)item.IsSerialItem,
+        //                         IsExpir = (bool)item.IsExpir,
+        //                         IsDimension = (bool)item.IsDimension,
+        //                         IsAttributeItem = (bool)item.IsAttributeItem,
+        //                         IsCommisionPercent = (bool)item.IsCommisionPercent,
+        //                         TaxesId1 = (int)item.TaxesId1,
+        //                         Tax1Rate = (int)item.Tax1Rate,
+        //                         TaxesId2 = (int)item.TaxesId2,
+        //                         Tax2Rate = (decimal)item.Tax2Rate,
+        //                         Tax3Rate = (int)item.Tax3Rate,
+        //                         TaxesId3 = (int)item.TaxesId3,
+        //                         Tax1ForPurch = (bool)item.Tax1ForPurch,
+        //                         Tax2ForPurch = (bool)item.Tax2ForPurch,
+        //                         Tax3ForPurch = (bool)item.Tax3ForPurch,
+        //                         Tax1ForSale = (bool)item.Tax1ForSale,
+        //                         Tax2ForSale = (bool)item.Tax2ForSale,
+        //                         Tax3ForSale = (bool)item.Tax3ForSale,
+        //                         Tax1PlusOrMinus = (bool)item.Tax1PlusOrMinus,
+        //                         Tax2PlusOrMinus = (bool)item.Tax2PlusOrMinus,
+        //                         Tax3PlusOrMinus = (bool)item.Tax3PlusOrMinus,
+        //                         Tax1IsAccomulative = (bool)item.Tax1IsAccomulative,
+        //                         Tax2IsAccomulative = (bool)item.Tax2IsAccomulative,
+        //                         Tax3IsAccomulative = (bool)item.Tax3IsAccomulative,
+        //                         Tax1Style = (int)item.Tax1Style,
+        //                         Tax2Style = (int)item.Tax2Style,
+        //                         Tax3Style = (int)item.Tax3Style,
+        //                         IsCollection = (bool)item.IsCollection,
+        //                         ProductTypeId = (int)item.ProductTypeId,
+        //                         ItemColor = item.ItemColor,
+        //                         storepartId = item.StorePartId,
+        //                         ItemCategoryId = item.ItemCategoryId,
+        //                         imagePath = img.ImgPath
+        //                     }).Skip((No_Of_Page - 1) * Size_Of_Page).Take(Size_Of_Page);
+
+        //    if (storepartId.HasValue)
+        //    {
+        //        query = query.Where(q => q.storepartId == storepartId);
+        //    }
+
+        //    if (itemCategoryId.HasValue)
+        //    {
+        //        query = query.Where(q => q.ItemCategoryId == itemCategoryId);
+        //    }
+
+
+        //    itmDto.Page_No = No_Of_Page;
+        //    itmDto.Size_No = Size_Of_Page;
+        //    itmDto.data = query;
+
+        //    return itmDto;
+        //}
 
 
         public ItemNameDto GetItemscode(string code)

@@ -83,13 +83,30 @@ namespace Reports.Controllers
         [HttpPost, AllowAnonymous]
         public async Task<IActionResult> AddCustomer(AddCustomerDto dto)
         {
-           
+            var existingCustomer = _context.MsCustomer.SingleOrDefault(c => c.CustomerCode == dto.CustomerCode);
+
+            if (existingCustomer != null)
+            {
+                var errorResponse = new
+                {
+                    Message = dto.CustomerCode + "رمز العميل مكرر",
+                    ErrorCode = "DuplicateCustomerCode" 
+
+                };
+
+                return BadRequest(errorResponse);
+            }
+
+            var clientCurrency = _context.MsCurrency.Where(p => (bool)p.DefualtCurrency).FirstOrDefault();
+
             var customer = new MsCustomer()
             {
                 CustomerCode = dto.CustomerCode,
                 CustomerDescA = dto.CustomerDescA,
                 CustomerDescE = dto.CustomerDescE,
                 CustomerCatId = dto.CustomerCatId,
+                CurrencyId = clientCurrency.CurrencyId,
+                TaxRefNo = dto.TaxRefNo,
                 Tel = dto.Tel,
                 Tel2 = dto.Te2,
                 Email = dto.Email,
@@ -97,14 +114,31 @@ namespace Reports.Controllers
                 IsMobile = true
             };
 
+            var customerCategory = _context.MsCustomerCategory.SingleOrDefault(sal => sal.CustomerCatId == dto.CustomerCatId);
+            customer.SalPrice = customerCategory.SalPrice;
+
+
 
             await _context.MsCustomer.AddAsync(customer);
             _context.SaveChanges();
 
+
+            var customerAccountIds = _context.MsPossettings.Select(p => new
+            {
+                CustomerAccountId = p.CustomerAccountId
+            });
+
+            var POOSSettingCustomerAccountId = customerAccountIds.FirstOrDefault()?.CustomerAccountId;
+
+            var accountChart = _context.CalAccountChart.FirstOrDefault(c => c.AccountId == POOSSettingCustomerAccountId);
+
             var Account = new CalCustAccounts()
             {
-                AccountNameA = customer.CustomerDescA,
+                AccountNameA = accountChart.AccountNameA + "-" + customer.CustomerDescA,
+                AccountNameE = accountChart.AccountNameE + "-" + customer.CustomerDescE,
                 CustomerId = customer.CustomerId,
+                AccountId = POOSSettingCustomerAccountId,
+                AccountCode = customer.CustomerCode + "-" + accountChart.AccountCode,
                 IsInUse = true,
                 IsPrimeAccount = true,
             };
@@ -112,8 +146,10 @@ namespace Reports.Controllers
             _context.SaveChanges();
 
             var customerName = new addCustomerMessageDto { };
+            customerName.CustomerId = customer.CustomerId;
             customerName.CustomerDescA = customer.CustomerDescA;
-            //customerName.msCustomerCategories = CustomerCategory;
+            customerName.SalPrice = customer.SalPrice;
+            customerName.msCustomerCategories = (int)customer.CustomerCatId;
             customerName.Message = "تم اضافه العميل بنجاح";
 
             return Ok(customerName);

@@ -16,6 +16,7 @@ namespace BLL.DTO
 
         public string Tel { get; set; }
         public string Te2 { get; set; }
+        public string TaxRefNo { get; set; }
 
         public string Email { get; set;}
 

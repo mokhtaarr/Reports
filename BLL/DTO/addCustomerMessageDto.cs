@@ -7,8 +7,11 @@ namespace BLL.DTO
 {
     public class addCustomerMessageDto
     {
+        public int CustomerId { get; set; }
         public string CustomerDescA { get; set; }
+        public byte? SalPrice { get; set; }
+
         public string Message { get; set; }
-        public List<MsCustomerCategory> msCustomerCategories { get; set; }
+        public int msCustomerCategories { get; set; }
     }
 }

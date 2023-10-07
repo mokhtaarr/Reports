@@ -12,7 +12,9 @@ using DAL.Models;
 using DAL.Models2;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Static.Helper;
 using Static.VM;
@@ -37,6 +39,17 @@ namespace Reports.Controllers
             ResultDTO resultDTO = _itemsBll.GetAllItems(Page_No, Size_No);
             return resultDTO;
         }
+
+        [HttpPost("itempartition")]
+        public IActionResult GetPartitionCount(int itemcardid)
+        {
+            var totalItem = _db.MsItemPartition
+                .Where(item => item.ItemCardId == itemcardid)
+                .Sum(item => item.QtyInNotebook);
+
+            return Ok(new { TotalQtyInNotebook = totalItem });
+        }
+
 
         [HttpGet]
         public IEnumerable<TaxesDto> GetTaxes()
@@ -93,6 +106,8 @@ namespace Reports.Controllers
             return _itemsBll.GetPartitionWithStores(ItemCardId, storeid);
 
         }
+
+      
 
 
 
@@ -710,6 +725,933 @@ namespace Reports.Controllers
 
             return Ok(deleteMessageDto);
         }
+
+        [HttpGet("getAllBills")]
+        public async Task<IActionResult> GetAllBills(int pageNumber = 1, int pageSize = 10,
+             string DocTrNo = null, string CustomerCode = null)
+        {
+            if (pageNumber < 1)
+            {
+                pageNumber = 1;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            var query = _db.SalesInvCustSearch.AsQueryable();
+
+          
+
+            if (!string.IsNullOrWhiteSpace(CustomerCode))
+            {
+                query = query.Where(bill => bill.CustomerCode == CustomerCode && bill.CustomerCode.Length == CustomerCode.Length);
+            }
+
+            if (!string.IsNullOrWhiteSpace(DocTrNo))
+            {
+                query = query.Where(bill => bill.DocTrNo.Contains(DocTrNo));
+            }
+
+            //if (!string.IsNullOrWhiteSpace(DocTrNo))
+            //{
+            //    query = query.Where(bill => bill.DocTrNo == DocTrNo);
+            //}
+
+
+            var totalCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            if (pageNumber > totalPages)
+            {
+                pageNumber = totalPages;
+            }
+            var bills = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+            var response = new
+            {
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                Data = bills
+            };
+
+            return Ok(response);
+        }
+
+       [HttpGet("GetInvoice")]
+        public async Task<IActionResult> GetInvoice(int invid)
+        {
+            // استخراج الأعمدة التي تريدها من الجدول
+            var data = await _db.MsSalesInvoiceItemCard
+                .Where(items => items.InvId == invid)
+               .Join(_db.MsItemCard, // الجدول الثاني الذي تريد الانضمام إليه
+                item => item.ItemCardId, // مفتاح الانضمام من الجدول الأول
+                msitem => msitem.ItemCardId, // مفتاح الانضمام من الجدول الثاني
+               (item, msitem) => new // مشروع لاسترداد البيانات المطلوبة من الانضمام
+              {
+                    item.PriceAfterRate,
+                    item.ItemCardId,
+                    msitem.ItemDescA,
+                    item.Price,
+                    item.QtyBeforRate,
+                    item.UnitId,
+                    item.UnitRate,
+                    item.StoreId,
+                    item.StorePartId,
+                    item.Quantity,
+                    item.ItemType,
+                    item.DisAmount,
+                    item.DisPercent
+                                     
+                })
+                .ToListAsync(); 
+
+            return Ok(data); // ترجيع البيانات كاستجابة HTTP معروفة
+        }
+
+
+        [HttpPost, AllowAnonymous]
+        public IActionResult ReturnRequestHeader([FromBody] HeaderDto dto)
+        {
+
+            var book = from counter in _db.SysCounter
+                       where counter.BookId == dto.Header_BookId && counter.TrIdName == "ReqsalesId"
+                       select counter.Counter;
+
+            var empid = _db.GUsers.FirstOrDefault(x => x.UserId == Convert.ToInt32(dto.Header_CreatedBy));
+
+
+            var ReturnSalesReq = new MsReturnSalesReq
+            {
+                BookId = dto.Header_BookId,
+                TermId = dto.Header_TermId,
+                CurrencyId = dto.Header_CurrencyId,
+                CustomerId = dto.Header_CustomerId,
+                RectSourceType = (byte)dto.Header_RectSourceType,
+                Rate = dto.Header_Rate,
+                NotPaid = dto.NotPaid,
+                CreatedBy = dto.Header_CreatedBy,
+                CreatedAt = dto.Header_CreatedAt,
+                InvTotal = dto.Header_InvTotal,
+                DiscAmount = dto.Header_DiscAmount,
+                DiscPercent = dto.Header_DiscPercent,
+                DiscAmount2 = dto.Header_DiscAmount2,
+                DiscPercent2 = dto.Header_DiscPercent2,
+                TotalItemTax1 = dto.Header_TotalItemTax1,
+                TotalItemTax2 = dto.Header_TotalItemTax2,
+                TotalItemTax3 = dto.Header_TotalItemTax3,
+                TaxValue1 = dto.Header_TaxValue1,
+                TaxValue2 = dto.Header_TaxValue2,
+                TaxValue3 = dto.Header_TaxValue3,
+                TaxesId1 = dto.Header_TaxesId1,
+                TaxesId2 = dto.Header_TaxesId2,
+                TaxesId3 = dto.Header_TaxesId3,
+                PriceAfterTax = dto.Header_PriceAfterTax,
+                NetPrice = dto.Header_NetPrice,
+                PaidPrice = dto.Header_PaidPrice,
+                PaidPriceVisa = dto.Header_PaidPriceVisa,
+                BankTransfer = dto.Header_BankTransfer,
+                //  added on 11-6-2023
+                Remarks = dto.Remarks,
+                AddField3 = dto.AddField3,
+                InvDueDate = dto.InvDueDate,
+                IsMobile = true,
+                StoreId = dto.StoreId,
+                ExpenValue = dto.ExpenValue,
+                //  added on 1-8-2023
+                InvoiceType = (byte?)dto.InvoiceType,
+                TrDate = dto.Header_CreatedAt,
+                EmpId = empid.EmpId
+
+
+            };
+
+            ReturnSalesReq.TrNo = ((int)(book).FirstOrDefault()) + 1;
+
+
+
+            _db.MsReturnSalesReq.Add(ReturnSalesReq);
+            _db.SaveChanges();
+
+            var Counter = _db.SysCounter.FirstOrDefault(x => x.BookId == dto.Header_BookId);
+            Counter.Counter = ReturnSalesReq.TrNo;
+
+            _db.SaveChanges();
+
+            var response = new
+            {
+                InvReqsalesId = ReturnSalesReq.ReqsalesId,
+                Message = "تم أضافه الداتا بنجاح",
+             };
+            return Ok(response);
+
+        }
+
+        [HttpGet("getAllDetail")]
+        public IActionResult getAllDetail()
+        {
+            return Ok(_db.MsReturnSalesReqItemCard.ToList());
+        }
+
+        [HttpPost]
+        public IActionResult ReturnRequestDetail([FromBody] List<DetailReturnReqDto> dto)
+        {
+
+
+            var reqsalesId = 0;
+
+            foreach (var item in dto)
+            {
+                var itmType = _db.MsItemCard.Find(item.ItemCardId);
+
+                _db.MsReturnSalesReqItemCard.Add(new MsReturnSalesReqItemCard()
+                {
+                    ReqsalesId = item.ReqsalesId,
+                    ItemCardId = item.ItemCardId,
+                    Price = item.Price,
+                    //PriceAfterRate = item.PriceAfterRate,
+                    QtyBeforRate = item.QtyBeforRate,
+                    // في حاله ال item is serial
+                    //Quantity = item.Quantity,
+                    UnitId = item.UnitId,
+                    UnitRate = item.UnitRate,
+                    StoreId = item.StoreId,
+                    StorePartId = item.StorePartId,
+                    DisAmount = item.DisAmount,
+                    // اول معادله 
+
+                    DisPercent = item.DisAmount > 0 ? (item.DisAmount / (item.Price * item.QtyBeforRate)) * 100 : 0,
+                    // المعادله التانيه
+
+                    Quantity = item.QtyBeforRate * item.UnitRate,
+
+                    // التعديل الثالث الخاص ب ال item Type
+
+                    ItemType = itmType.ItemType,
+
+                    Tax1Percent = item.Tax1Percent,
+                    Tax2Percent = item.Tax2Percent,
+                    Tax3Percent = item.Tax3Percent,
+                    TaxesId1 = item.Detail_TaxesId1,
+                    TaxesId2 = item.Detail_TaxesId2,
+                    TaxesId3 = item.Detail_TaxesId3,
+                    Tax1IsAccomulative = item.Tax1IsAccomulative,
+                    Tax2IsAccomulative = item.Tax2IsAccomulative,
+                    Tax3IsAccomulative = item.Tax3IsAccomulative,
+                    IsCollection = item.IsCollection
+                });
+                reqsalesId = item.ReqsalesId;
+            }
+            _db.SaveChanges();
+            //ResultHeaderAndDetialDto res = new ResultHeaderAndDetialDto();
+            //res.Invid = reqsalesId;
+            //res.Message = 
+
+            var response = new
+            {
+                ReqsalesId = reqsalesId,
+                Message = "تم أضافه الداتا بنجاح"
+            };
+            return Ok(response);
+        }
+
+
+
+        [HttpPost("ReturnedInovice")]
+        public async Task<IActionResult> ReturnedInovice(List<QuantityUpdate> updates)
+        {
+            try
+            {
+                if (updates.Any(update => update == null || update.Invid == 0 || update.ItemCardId == 0 || update.ReturnedQuantity == 0))
+                {
+
+                    var res = new
+                    {
+                        Message = "يجب ملء جميع القيم في القائمة ."
+                    };
+
+                    return BadRequest(res);
+                }
+
+                var book = from counter in _db.SysCounter
+                           where counter.TrIdName == "ReqsalesId"
+                           select counter.Counter;
+
+
+                var itemcardids = updates.Select(update => update.ItemCardId).ToList();
+
+                var invides = updates.Select(update => update.Invid).ToList();
+
+                var MsSalesInvoiceheader = await _db.MsSalesInvoice.Where(item => invides.Contains(item.InvId)).ToListAsync();
+
+                var existingDetail = await _db.MsReturnSalesReqItemCard
+                .Where(req => invides.Contains((int)req.InvId) && itemcardids.Contains((int)req.ItemCardId))
+                .Select(req => new { req.InvId, req.ItemCardId, req.StorePartId })
+                .ToListAsync();
+
+                var detail = await _db.MsSalesInvoiceItemCard.Where(item => invides.Contains((int)item.InvId) && itemcardids.Contains((int)item.ItemCardId))
+               .ToListAsync();
+
+                //var DetailReturnSalesReqs = new List<MsReturnSalesReqItemCard>();
+
+
+                //var ArrayReturnSalesReqs = new List<MsReturnSalesReq>();
+
+
+                foreach (var salesInvoice in MsSalesInvoiceheader)
+                {
+
+                    var returnSalesReq = new MsReturnSalesReq
+                    {
+                        InvId = salesInvoice.InvId,
+                        CustomerId = salesInvoice.CustomerId,
+                        StoreId = salesInvoice.StoreId,
+                        CurrencyId = salesInvoice.CurrencyId,
+                        BookId = salesInvoice.BookId,
+                        TermId = salesInvoice.TermId,
+                        Rate = salesInvoice.Rate,
+                        NotPaid = salesInvoice.NotPaid,
+                        CreatedBy = salesInvoice.CreatedBy,
+                        CreatedAt = salesInvoice.CreatedAt,
+                        InvTotal = salesInvoice.InvTotal,
+                        EmpId = salesInvoice.EmpId,
+                        TrDate = salesInvoice.CreatedAt,
+                        InvoiceType = salesInvoice.InvoiceType,
+                    };
+
+                    returnSalesReq.TrNo = ((int)(book).FirstOrDefault()) + 1;
+
+                    var Counter = _db.SysCounter.FirstOrDefault(x => x.TrIdName == "ReqsalesId");
+                    Counter.Counter = returnSalesReq.TrNo;
+
+                    _db.MsReturnSalesReq.Add(returnSalesReq);
+                    await _db.SaveChangesAsync(); // حفظ التغييرات في قاعدة البيانات
+
+                    foreach (var detailSalesReq in detail)
+                    {
+                        if (!existingDetail.Any(d => d.InvId == detailSalesReq.InvId && d.ItemCardId == detailSalesReq.ItemCardId && d.StorePartId == detailSalesReq.StorePartId))
+                        {
+                            var detailData = new MsReturnSalesReqItemCard
+                            {
+                                ReqsalesId = returnSalesReq.ReqsalesId,
+                                InvId = detailSalesReq.InvId,
+                                ItemCardId = detailSalesReq.ItemCardId,
+                                Price = detailSalesReq.Price,
+                                QtyBeforRate = detailSalesReq.QtyBeforRate,
+                                UnitId = detailSalesReq.UnitId,
+                                UnitRate = detailSalesReq.UnitRate,
+                                StoreId = detailSalesReq.StoreId,
+                                StorePartId = detailSalesReq.StorePartId,
+                                DisAmount = detailSalesReq.DisAmount,
+                                DisPercent = detailSalesReq.DisPercent,
+                                Quantity = detailSalesReq.Quantity,
+                                ItemType = detailSalesReq.ItemType,
+                            };
+
+                            _db.MsReturnSalesReqItemCard.Add(detailData);
+                            await _db.SaveChangesAsync();
+                        }
+                    }
+
+                   
+
+                }
+
+                var recordsToUpdate = await _db.MsReturnSalesReqItemCard
+                    .Where(item => itemcardids.Contains((int)item.ItemCardId) && invides.Contains((int)item.InvId))
+                    .ToListAsync();
+
+                foreach (var update in updates)
+                {
+                    var record = recordsToUpdate.FirstOrDefault(item => item.ItemCardId == update.ItemCardId && item.InvId == update.Invid && recordsToUpdate.Any(rt => rt.StorePartId == item.StorePartId));
+
+                    if (record != null)
+                    {
+                        record.ReturnedQuantity = record.ReturnedQuantity ?? 0;
+
+                        record.ReturnedQuantity += update.ReturnedQuantity;
+
+                    };
+
+                    if (record.Quantity < record.ReturnedQuantity)
+                    {
+
+                        record.ReturnedQuantity = record.Quantity;
+
+                    }
+                }
+
+                await _db.SaveChangesAsync();
+
+                var response = new { Success = "تم اضافه طلب المرتجع بنجاح" };
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "حدث خطأ أثناء اضافه طلب المرتجع الكميات");
+            }
+        }
+
+        // دي الفانكشن المكتوبه بشكل صحيح 
+
+        //[HttpPost("ReturnedInovice")]
+        //public async Task<IActionResult> ReturnedInovice(List<QuantityUpdate> updates)
+        //{
+        //    try
+        //    {
+        //        if (updates.Any(update => update == null || update.Invid == 0 || update.ItemCardId == 0 || update.ReturnedQuantity == 0))
+        //        {
+
+        //            var res = new
+        //            {
+        //                Message = "يجب ملء جميع القيم في القائمة ."
+        //            };
+
+        //             return BadRequest(res);
+        //        }
+
+        //        var book = from counter in _db.SysCounter
+        //                   where  counter.TrIdName == "ReqsalesId"
+        //                   select counter.Counter;
+
+
+        //        var itemcardids = updates.Select(update => update.ItemCardId).ToList();
+
+        //        var invides = updates.Select(update => update.Invid).ToList();
+
+        //        var MsSalesInvoiceheader = await _db.MsSalesInvoice.Where(item => invides.Contains(item.InvId)).ToListAsync();
+
+        //        var ArrayReturnSalesReqs = new List<MsReturnSalesReq>();
+
+
+        //        foreach (var salesInvoice in MsSalesInvoiceheader)
+        //        {
+
+        //                var returnSalesReq = new MsReturnSalesReq
+        //                {
+        //                    InvId = salesInvoice.InvId,
+        //                    CustomerId = salesInvoice.CustomerId,
+        //                    StoreId = salesInvoice.StoreId,
+        //                    CurrencyId = salesInvoice.CurrencyId,
+        //                    BookId = salesInvoice.BookId,
+        //                    TermId = salesInvoice.TermId,
+        //                    Rate = salesInvoice.Rate,
+        //                    NotPaid = salesInvoice.NotPaid,
+        //                    CreatedBy = salesInvoice.CreatedBy,
+        //                    CreatedAt = salesInvoice.CreatedAt,
+        //                    InvTotal = salesInvoice.InvTotal,
+        //                    EmpId = salesInvoice.EmpId,
+        //                    TrDate = salesInvoice.CreatedAt,
+        //                    InvoiceType = salesInvoice.InvoiceType,
+        //                };
+
+        //            returnSalesReq.TrNo = ((int)(book).FirstOrDefault()) + 1;
+
+        //            var Counter = _db.SysCounter.FirstOrDefault(x => x.TrIdName == "ReqsalesId");
+        //            Counter.Counter = returnSalesReq.TrNo;
+
+
+        //            ArrayReturnSalesReqs.Add(returnSalesReq);
+
+        //        }
+
+        //        _db.MsReturnSalesReq.AddRange(ArrayReturnSalesReqs);
+        //        await _db.SaveChangesAsync(); // حفظ التغييرات في قاعدة البيانات
+
+
+        //        var detail = await _db.MsSalesInvoiceItemCard.Where(item => invides.Contains((int)item.InvId) && itemcardids.Contains((int)item.ItemCardId))
+        //         .ToListAsync();
+
+
+        //        var existingDetail = await _db.MsReturnSalesReqItemCard
+        //            .Where(req => invides.Contains((int)req.InvId) && itemcardids.Contains((int)req.ItemCardId))
+        //            .Select(req => new { req.InvId, req.ItemCardId,req.StorePartId})
+        //            .ToListAsync();
+
+        //        var DetailReturnSalesReqs = new List<MsReturnSalesReqItemCard>();
+
+        //        foreach (var detailSalesReq in detail)
+        //        {
+        //            if (!existingDetail.Any(d => d.InvId == detailSalesReq.InvId && d.ItemCardId == detailSalesReq.ItemCardId && d.StorePartId == detailSalesReq.StorePartId))
+        //            {
+        //                var detailData = new MsReturnSalesReqItemCard
+        //                {
+        //                    InvId = detailSalesReq.InvId,
+        //                    ItemCardId = detailSalesReq.ItemCardId,
+        //                    Price = detailSalesReq.Price,
+        //                    QtyBeforRate = detailSalesReq.QtyBeforRate,
+        //                    UnitId = detailSalesReq.UnitId,
+        //                    UnitRate = detailSalesReq.UnitRate,
+        //                    StoreId = detailSalesReq.StoreId,
+        //                    StorePartId = detailSalesReq.StorePartId,
+        //                    DisAmount = detailSalesReq.DisAmount,
+        //                    DisPercent = detailSalesReq.DisPercent,
+        //                    Quantity = detailSalesReq.Quantity,
+        //                    ItemType = detailSalesReq.ItemType,
+        //                };
+        //                DetailReturnSalesReqs.Add(detailData);
+        //            }                      
+        //        }
+
+        //        _db.MsReturnSalesReqItemCard.AddRange(DetailReturnSalesReqs);
+        //        await _db.SaveChangesAsync();
+
+
+        //        var recordsToUpdate = await _db.MsReturnSalesReqItemCard
+        //            .Where(item => itemcardids.Contains((int)item.ItemCardId) && invides.Contains((int)item.InvId))
+        //            .ToListAsync();
+
+        //        foreach (var update in updates)
+        //        {
+        //            var record = recordsToUpdate.FirstOrDefault(item => item.ItemCardId == update.ItemCardId && item.InvId == update.Invid);
+
+        //            if (record != null)
+        //            {
+        //                record.ReturnedQuantity = record.ReturnedQuantity ?? 0;
+
+        //                record.ReturnedQuantity += update.ReturnedQuantity;
+
+        //            };
+
+        //            if (record.Quantity < record.ReturnedQuantity)
+        //            {
+
+        //                record.ReturnedQuantity = record.Quantity;
+
+        //            }
+        //        }
+
+        //        await _db.SaveChangesAsync();
+
+        //        var response = new { Success = "تم اضافه طلب المرتجع بنجاح" };
+        //        return Ok(response);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(500, "حدث خطأ أثناء اضافه طلب المرتجع الكميات");
+        //    }
+        //}
+
+        [HttpGet("GetAllReturnInvoiceRequest")]
+        public async Task<IActionResult> GetAllReturnInvoiceRequest(int pageNumber = 1, int pageSize = 10,
+            string DocTrNo = null, string CustomerCode = null)
+        {
+            if (pageNumber < 1)
+            {
+                pageNumber = 1;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            var query = _db.ReturnSalesReqSearch.AsQueryable();
+
+
+
+            if (!string.IsNullOrWhiteSpace(CustomerCode))
+            {
+                query = query.Where(bill => bill.CustomerCode == CustomerCode && bill.CustomerCode.Length == CustomerCode.Length);
+            }
+
+            if (!string.IsNullOrWhiteSpace(DocTrNo))
+            {
+                query = query.Where(bill => bill.DocTrNo == DocTrNo);
+            }
+
+
+            var totalCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            if (pageNumber > totalPages)
+            {
+                pageNumber = totalPages;
+            }
+            var bills = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+            var response = new
+            {
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                Data = bills
+            };
+
+            return Ok(response);
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllPartition()
+        //{
+        //    var SelectPartiton =  _db.MsPartition.Select(p => new
+        //    {
+        //        itempardId = p.ite
+        //    })
+        //}
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllPartition()
+        {
+            // اختيار الأعمدة المطلوبة
+            var selectedColumns = await _db.MsPartition
+                .Select(p => new
+                {
+                    StorePartId = p.StorePartId,
+                    PartDescA = p.PartDescA,
+                })
+                .ToListAsync();
+
+            return Ok(selectedColumns);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllStores()
+        {
+            // اختيار الأعمدة المطلوبة
+            var selectedColumns = await _db.MsStores
+                .Select(p => new
+                {
+                    StoreId = p.StoreId,
+                    StoreDescA = p.StoreDescA,
+                })
+                .ToListAsync();
+
+            return Ok(selectedColumns);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategory()
+        {
+            var cat = await _db.MsItemCategory.Select(c => new
+            {
+                ItemCategoryId = c.ItemCategoryId,
+                ItemCatDescA = c.ItemCatDescA,
+            })
+                .ToListAsync();
+
+            return Ok(cat);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllProductsTypes()
+        {
+            var productType = await _db.SrProductsTypes.Select(c => new
+            {
+                ProductTypeId = c.ProductTypeId,
+                DescA = c.DescA
+
+            }).ToListAsync();
+
+            return Ok(productType);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GradeTypeCeramic()
+        {
+            var type = await _db.PrintGradeType.Select(t => new
+            {
+                GradId = t.GradId,
+                DescA = t.DescA
+            }).ToListAsync();
+
+            return Ok(type);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllBrands()
+        {
+            var brand = await _db.SrBrands.Select(b => new
+            {
+                BrandId = b.BrandId,
+                DescA = b.DescA
+
+            }).ToListAsync();
+
+            return Ok(brand);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Print_CoverType()
+        {
+            var colorType = await _db.PrintCoverType.Select(p => new
+            {
+                CoverTypeId = p.CoverTypeId,
+                DescA = p.DescA
+            }).ToListAsync();
+
+            return Ok(colorType);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Print_SizeType()
+        {
+            var sizeType = await _db.PrintSizeType.Select(s => new
+            {
+                SizeTypeId = s.SizeTypeId,
+                DescA = s.DescA
+            }).ToListAsync();
+
+            return Ok(sizeType);
+        }
+
+        [HttpPost, AllowAnonymous]
+        public async Task<IActionResult>  GetItemsWithFilter(int pageNumber = 1, int pageSize = 10,
+            int? storepartId = null, int? itemCategoryId = null,int? StoreId = null , int? ProductTypeId = null,
+            int? GradId = null , int? BrandId = null , int? CoverTypeId = null, int? SizeTypeId = null)
+        {
+           
+
+            if (pageNumber < 1)
+            {
+                pageNumber = 1;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            var query = (
+                             from item in _db.MsItemCard
+                             join img in _db.MsItemImages
+                             on item.ItemCardId equals img.ItemCardId into itemImages
+                             from img in itemImages.DefaultIfEmpty()
+                             join partition in _db.MsItemPartition
+                             on item.ItemCardId equals partition.ItemCardId into itemPartitions
+                             from partition in itemPartitions.DefaultIfEmpty()
+
+                             select new
+                             {
+                                 ItemCardId = item.ItemCardId,
+                                 storepartId = partition.StorePartId,
+                                 ItemCategoryId = item.ItemCategoryId,
+                                 StoreId = item.StoreId,
+                                 GradId = item.GradId,
+                                 CoverTypeId = item.CoverTypeId,
+                                 SizeTypeId = item.SizeTypeId,
+                                 BrandId = item.BrandId,
+                                 ItemDescA = item.ItemDescA,
+                                 ItemDescE = item.ItemDescE,
+                                 ItemCode = item.ItemCode,
+                                 firstPrice = item.FirstPrice,
+                                 SecandPrice = item.SecandPrice,
+                                 ThirdPrice = item.ThirdPrice,
+                                 ItemType = (int)item.ItemType,
+                                 IsSerialItem = (bool)item.IsSerialItem,
+                                 IsExpir = (bool)item.IsExpir,
+                                 IsDimension = (bool)item.IsDimension,
+                                 IsAttributeItem = (bool)item.IsAttributeItem,
+                                 IsCommisionPercent = (bool)item.IsCommisionPercent,
+                                 TaxesId1 = (int)item.TaxesId1,
+                                 Tax1Rate = (int)item.Tax1Rate,
+                                 TaxesId2 = (int)item.TaxesId2,
+                                 Tax2Rate = (decimal)item.Tax2Rate,
+                                 Tax3Rate = (int)item.Tax3Rate,
+                                 TaxesId3 = (int)item.TaxesId3,
+                                 Tax1ForPurch = (bool)item.Tax1ForPurch,
+                                 Tax2ForPurch = (bool)item.Tax2ForPurch,
+                                 Tax3ForPurch = (bool)item.Tax3ForPurch,
+                                 Tax1ForSale = (bool)item.Tax1ForSale,
+                                 Tax2ForSale = (bool)item.Tax2ForSale,
+                                 Tax3ForSale = (bool)item.Tax3ForSale,
+                                 Tax1PlusOrMinus = (bool)item.Tax1PlusOrMinus,
+                                 Tax2PlusOrMinus = (bool)item.Tax2PlusOrMinus,
+                                 Tax3PlusOrMinus = (bool)item.Tax3PlusOrMinus,
+                                 Tax1IsAccomulative = (bool)item.Tax1IsAccomulative,
+                                 Tax2IsAccomulative = (bool)item.Tax2IsAccomulative,
+                                 Tax3IsAccomulative = (bool)item.Tax3IsAccomulative,
+                                 Tax1Style = (int)item.Tax1Style,
+                                 Tax2Style = (int)item.Tax2Style,
+                                 Tax3Style = (int)item.Tax3Style,
+
+                                 // QtyInNotebook = _db.MsItemPartition.
+                                 // Where(t => t.ItemCardId == item.ItemCardId && t.StorePartId == item.StorePartId)
+                                 //.Select(p => p.QtyInNotebook).FirstOrDefault(),
+
+                                 QtyInNotebook = partition.QtyInNotebook,
+
+                                 IsCollection = (bool)item.IsCollection,
+                                 ProductTypeId = (int)item.ProductTypeId,
+                                 ItemColor = item.ItemColor,
+                                 imagePath = img.ImgPath
+                             });
+
+            if (storepartId.HasValue)
+            {
+                query = query.Where(q => q.storepartId == storepartId);
+            }
+
+            if (itemCategoryId.HasValue)
+            {
+                query = query.Where(q => q.ItemCategoryId == itemCategoryId);
+            }
+
+            if (StoreId.HasValue)
+            {
+                query = query.Where(q => q.StoreId == StoreId);
+            }
+
+            if (ProductTypeId.HasValue)
+            {
+                query = query.Where(p => p.ProductTypeId == ProductTypeId);
+            }
+
+            if (GradId.HasValue)
+            {
+                query = query.Where(g => g.GradId == GradId);
+            }
+
+            if (BrandId.HasValue)
+            {
+                query = query.Where(b => b.BrandId == BrandId);
+            }
+
+            if (CoverTypeId.HasValue)
+            {
+                query = query.Where(q=> q.CoverTypeId == CoverTypeId);
+            }
+
+            if(SizeTypeId.HasValue)
+            {
+                query = query.Where(s => s.SizeTypeId == SizeTypeId);
+            }
+            var totalCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            if (pageNumber > totalPages)
+            {
+                pageNumber = totalPages;
+            }
+
+            var bills = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+            var response = new
+            {
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                Data = bills
+            };
+
+            return Ok(response);
+
+        }
+        //    [HttpPost("ProductQuantityOut")]
+        //    public async Task<IActionResult> ProductQuantityOut(List<QuantityUpdate> updates)
+        //    {
+        //        try
+        //        {
+
+        //            if (updates.Any(update => update == null || update.Invid == 0 || update.ItemCardId == 0 || update.ReturnedQuantity == 0))
+        //            {
+
+        //                var res = new
+        //                {
+        //                    Message = "يجب ملء جميع القيم في القائمة ."
+        //                };
+
+        //                return BadRequest(res);
+        //            }
+
+        //            var itemcardids = updates.Select(update => update.ItemCardId).ToList();
+
+        //            var invides = updates.Select(update => update.Invid).ToList();
+
+        //            var MsSalesInvoiceheader = await _db.MsSalesInvoice.Where(item => invides.Contains(item.InvId)).ToListAsync();
+
+        //            var detail = await _db.MsSalesInvoiceItemCard.Where(item => invides.Contains((int)item.InvId) && itemcardids.Contains((int)item.ItemCardId))
+        //            .ToListAsync();
+
+
+        //            foreach (var salesInvoice in MsSalesInvoiceheader)
+        //            {
+        //                var returnSalesReq = new MsReturnSalesReq
+        //                {
+        //                    InvId = salesInvoice.InvId,
+        //                    CustomerId = salesInvoice.CustomerId,
+        //                    StoreId = salesInvoice.StoreId,
+        //                    CurrencyId = salesInvoice.CurrencyId,
+        //                    BookId = salesInvoice.BookId,
+        //                    TermId = salesInvoice.TermId,
+        //                    Rate = salesInvoice.Rate,
+        //                    NotPaid = salesInvoice.NotPaid,
+        //                    CreatedBy = salesInvoice.CreatedBy,
+        //                    CreatedAt = salesInvoice.CreatedAt,
+        //                    InvTotal = salesInvoice.InvTotal,
+        //                    EmpId = salesInvoice.EmpId,
+        //                    TrDate = salesInvoice.CreatedAt,
+        //                    InvoiceType = salesInvoice.InvoiceType,
+        //                };
+        //                _db.MsReturnSalesReq.Add(returnSalesReq);
+        //                await _db.SaveChangesAsync(); // حفظ التغييرات في قاعدة البيانات
+
+        //                foreach (var detailSalesReq in detail)
+        //                {
+        //                    var detailData = new MsReturnSalesReqItemCard
+        //                    {
+        //                        ReqsalesId = returnSalesReq.ReqsalesId,
+        //                        InvId = detailSalesReq.InvId,
+        //                        ItemCardId = detailSalesReq.ItemCardId,
+        //                        Price = detailSalesReq.Price,
+        //                        QtyBeforRate = detailSalesReq.QtyBeforRate,
+        //                        UnitId = detailSalesReq.UnitId,
+        //                        UnitRate = detailSalesReq.UnitRate,
+        //                        StoreId = detailSalesReq.StoreId,
+        //                        StorePartId = detailSalesReq.StorePartId,
+        //                        DisAmount = detailSalesReq.DisAmount,
+        //                        DisPercent = detailSalesReq.DisPercent,
+        //                        Quantity = detailSalesReq.Quantity,
+        //                        ItemType = detailSalesReq.ItemType,
+        //                    };
+
+        //                    _db.MsReturnSalesReqItemCard.Add(detailData);
+        //                    await _db.SaveChangesAsync();
+        //                }
+
+        //            }
+
+
+
+
+        //            var recordsToUpdate = await _db.MsReturnSalesReqItemCard
+        //                .Where(item => itemcardids.Contains((int)item.ItemCardId) && invides.Contains((int)item.InvId))
+        //                .ToListAsync();
+
+        //            foreach (var update in updates)
+        //            {
+        //                var record = recordsToUpdate.FirstOrDefault(item => item.ItemCardId == update.ItemCardId);
+        //                if (record != null)
+        //                {
+        //                    record.ReturnedQuantity = update.ReturnedQuantity;
+        //                }
+        //            }
+
+        //            await _db.SaveChangesAsync();
+
+        //            var response = new { Success = "تم اضافه طلب المرتجع بنجاح" };
+        //            return Ok(response);
+        //        }
+        //        catch (Exception)
+        //        {
+        //            return StatusCode(500, "حدث خطأ أثناء اضافه طلب المرتجع الكميات");
+        //        }
+        //    }
 
     }
 

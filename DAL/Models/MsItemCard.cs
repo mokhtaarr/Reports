@@ -34,6 +34,7 @@ namespace DAL.Models
 
         public int ItemCardId { get; set; }
         public int? ItemCategoryId { get; set; }
+        public int? CoverTypeId { get; set; }
         public int? StoreId { get; set; }
         public int? StorePartId { get; set; }
         public int? BasUnitId { get; set; }
