@@ -163,18 +163,3 @@ C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\R
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.deps.json
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.dll
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\BLL.pdb
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.dll
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.dll
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\DAL.pdb
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\bin\Debug\netstandard2.0\Static.pdb
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.AssemblyReference.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.dll
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\BLL\obj\Debug\netstandard2.0\BLL.pdb

@@ -108,13 +108,3 @@ C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\R
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.deps.json
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.dll
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\bin\Debug\netstandard2.0\DAL.pdb
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.AssemblyReference.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.dll
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\DAL\obj\Debug\netstandard2.0\DAL.pdb

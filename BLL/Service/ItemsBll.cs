@@ -1053,6 +1053,15 @@ namespace BLL.Service
         }
         public IEnumerable<GetPartitionAndStoreDto> GetPartitionWithStores(int id , int storeid)
         {
+            MsItemCardDefaulPartitions defaulPartition = db.MsItemCardDefaulPartitions.FirstOrDefault(p=>p.ItemCardId == id && p.StoreId == storeid);
+            MsPartition DefaultStore = null ; 
+
+            if (defaulPartition != null)
+            {
+                 DefaultStore = db.MsPartition.FirstOrDefault(p => p.StorePartId == defaulPartition.StorePartId);
+
+            }
+
             var items = from Partition in db.MsPartition
                         join itmPartition in db.MsItemPartition
                         on Partition.StorePartId equals itmPartition.StorePartId
@@ -1070,7 +1079,8 @@ namespace BLL.Service
                             StoreId = store.StoreId,
                             StoreCode = store.StoreCode,
                             StoreDescA = store.StoreDescA,
-                            StoreDescE = store.StoreDescE
+                            StoreDescE = store.StoreDescE,
+                            DefaultStore = DefaultStore != null ? DefaultStore.PartDescA : string.Empty
                         };
 
             var st = from part in db.MsPartition

@@ -25,9 +25,9 @@ namespace BLL.DTO
         public decimal Header_TaxValue1 { get; set; }
         public decimal Header_TaxValue2 { get; set; }
         public decimal Header_TaxValue3 { get; set; }
-        public int Header_TaxesId1 { get; set; }
-        public int Header_TaxesId2 { get; set; }
-        public int Header_TaxesId3 { get; set; }
+        public int? Header_TaxesId1 { get; set; }
+        public int? Header_TaxesId2 { get; set; }
+        public int? Header_TaxesId3 { get; set; }
         public decimal Header_PriceAfterTax { get; set; }
         public decimal Header_NetPrice { get; set; }
         public decimal Header_PaidPrice { get; set; }

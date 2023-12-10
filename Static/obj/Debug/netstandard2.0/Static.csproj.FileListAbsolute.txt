@@ -107,13 +107,3 @@ C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\R
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\Static\obj\Debug\netstandard2.0\Static.csproj.CoreCompileInputs.cache
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\Static\obj\Debug\netstandard2.0\Static.dll
 C:\Users\Softgo\Desktop\جوبات صبح\New folder (4)\Report (3)\Report (3)\Report\Reports\Static\obj\Debug\netstandard2.0\Static.pdb
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\bin\Debug\netstandard2.0\Static.deps.json
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\bin\Debug\netstandard2.0\Static.dll
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\bin\Debug\netstandard2.0\Static.pdb
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\obj\Debug\netstandard2.0\Static.csproj.AssemblyReference.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\obj\Debug\netstandard2.0\Static.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\obj\Debug\netstandard2.0\Static.AssemblyInfoInputs.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\obj\Debug\netstandard2.0\Static.AssemblyInfo.cs
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\obj\Debug\netstandard2.0\Static.csproj.CoreCompileInputs.cache
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\obj\Debug\netstandard2.0\Static.dll
-C:\Users\AcTivE\Desktop\REportKareem\Report\Reports\Static\obj\Debug\netstandard2.0\Static.pdb

@@ -103,14 +103,14 @@ namespace Reports.Controllers
             {
                 CustomerCode = dto.CustomerCode,
                 CustomerDescA = dto.CustomerDescA,
-                CustomerDescE = dto.CustomerDescE,
+                CustomerDescE = dto.CustomerDescE ?? "",
                 CustomerCatId = dto.CustomerCatId,
                 CurrencyId = clientCurrency.CurrencyId,
                 TaxRefNo = dto.TaxRefNo,
                 Tel = dto.Tel,
-                Tel2 = dto.Te2,
-                Email = dto.Email,
-                Address = dto.Address,
+                Tel2 = dto.Te2 ?? "",
+                Email = dto.Email ?? "",
+                Address = dto.Address ?? "",
                 IsMobile = true
             };
 
@@ -136,6 +136,7 @@ namespace Reports.Controllers
             {
                 AccountNameA = accountChart.AccountNameA + "-" + customer.CustomerDescA,
                 AccountNameE = accountChart.AccountNameE + "-" + customer.CustomerDescE,
+                AccountDescription = "BasicAccCode",
                 CustomerId = customer.CustomerId,
                 AccountId = POOSSettingCustomerAccountId,
                 AccountCode = customer.CustomerCode + "-" + accountChart.AccountCode,

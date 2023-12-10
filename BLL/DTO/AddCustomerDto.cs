@@ -11,7 +11,7 @@ namespace BLL.DTO
         public string CustomerCode { get; set; }
         [Required, MaxLength(100)]
         public string CustomerDescA { get; set; }
-        [Required, MaxLength(100)]
+        [MaxLength(100)]
         public string CustomerDescE { get; set; }
 
         public string Tel { get; set; }

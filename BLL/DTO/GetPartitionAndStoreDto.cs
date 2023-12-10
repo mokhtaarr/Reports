@@ -14,6 +14,8 @@ namespace BLL.DTO
         public decimal CoastAverage { get; set; }
         public decimal ReservedQty { get; set; }
 
+        public string DefaultStore { get; set; }
+
         public int StoreId { get; set; }
         public string StoreCode { get; set; }
         public string StoreDescA { get; set; }

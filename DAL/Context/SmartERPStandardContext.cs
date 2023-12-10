@@ -312,6 +312,7 @@ namespace DAL.Context
         public virtual DbSet<MsPosSpecialItems> MsPosSpecialItems { get; set; }
         public virtual DbSet<MsPossettings> MsPossettings { get; set; }
         public virtual DbSet<MsPurchInvVehicleJobOrderJoin> MsPurchInvVehicleJobOrderJoin { get; set; }
+        public virtual DbSet<MsItemCardDefaulPartitions> MsItemCardDefaulPartitions { get; set; }
         public virtual DbSet<MsPurchOrderDetail> MsPurchOrderDetail { get; set; }
         public virtual DbSet<MsPurchOrderReqDetail> MsPurchOrderReqDetail { get; set; }
         public virtual DbSet<MsPurchasInvoice> MsPurchasInvoice { get; set; }
@@ -12175,6 +12176,14 @@ namespace DAL.Context
 
                 entity.Property(e => e.UpdateBy).HasMaxLength(20);
             });
+
+            modelBuilder.Entity<MsItemCardDefaulPartitions>(entity =>
+            {
+                entity.HasKey(e => e.ItemStorePrtId);
+
+                entity.ToTable("Ms_ItemCardDefaulPartitions");
+            });
+
 
             modelBuilder.Entity<MsLetterOfGuaranteeTrans>(entity =>
             {

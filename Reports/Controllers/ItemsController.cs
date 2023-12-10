@@ -18,6 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Static.Helper;
 using Static.VM;
+using static System.Reflection.Metadata.BlobBuilder;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Reports.Controllers
 {
@@ -287,9 +289,9 @@ namespace Reports.Controllers
 
             _db.SaveChanges();
 
-            var detailRange = _db.MobSalesInvoiceItemCard.Where(inv => inv.MobInvId == header.MobInvId).ToList();
-            _db.MobSalesInvoiceItemCard.RemoveRange(detailRange);
-            _db.SaveChanges();
+            //var detailRange = _db.MobSalesInvoiceItemCard.Where(inv => inv.MobInvId == header.MobInvId).ToList();
+            //_db.MobSalesInvoiceItemCard.RemoveRange(detailRange);
+            //_db.SaveChanges();
 
             updateDto.message = "update Successfully";
             updateDto.invid = header.MobInvId;
@@ -325,13 +327,84 @@ namespace Reports.Controllers
         }
 
 
+        //[HttpPost, AllowAnonymous]
+        //public IActionResult CreateOrderHeader(OrderHeaderDto dto)
+        //{
+        //    var book = from counter in _db.SysCounter
+        //               where counter.BookId == dto.Header_BookId && counter.TrIdName == "SalesOrderId"
+        //               select counter.Counter;
+        //    var empid = _db.GUsers.FirstOrDefault(x => x.UserId == Convert.ToInt32(dto.Header_CreatedBy));
+
+        //    var salesOrder = new MsSalesOrder
+        //    {
+        //        BookId = dto.Header_BookId,
+        //        TermId = dto.Header_TermId,
+        //        CurrencyId = dto.Header_CurrencyId,
+        //        CustomerId = dto.Header_CustomerId,
+        //        RectSourceType = (byte)dto.Header_RectSourceType,
+        //        Rate = dto.Header_Rate,
+        //        CreatedBy = dto.Header_CreatedBy,
+        //        CreatedAt = dto.Header_CreatedAt,
+        //        InvTotal = dto.Header_InvTotal,
+        //        DiscAmount = dto.Header_DiscAmount,
+        //        DiscPercent = dto.Header_DiscPercent,
+        //        DiscAmount2 = dto.Header_DiscPercent2,
+        //        DiscPercent2 = dto.Header_DiscPercent2,
+        //        TotalItemTax1 = dto.Header_TotalItemTax1,
+        //        TotalItemTax2 = dto.Header_TotalItemTax2,
+        //        TotalItemTax3 = dto.Header_TotalItemTax3,
+        //        TaxValue1 = dto.Header_TaxValue1,
+        //        TaxValue2 = dto.Header_TaxValue2,
+        //        TaxValue3 = dto.Header_TaxValue3,
+        //        TaxesId1 = dto.Header_TaxesId1,
+        //        TaxesId2 = dto.Header_TaxesId2,
+        //        TaxesId3 = dto.Header_TaxesId3,
+        //        PriceAfterTax = dto.Header_PriceAfterTax,
+        //        NetPrice = dto.Header_NetPrice,
+        //        PaidPrice = dto.Header_PaidPrice,
+        //        PaidPriceVisa = dto.Header_PaidPriceVisa,
+        //        Remarks = dto.Remarks,
+        //        AddField3 = dto.AddField3,
+        //        InvDueDate = dto.InvDueDate,
+        //        IsMobile = true,
+        //        StoreId = dto.StoreId,
+        //        ExpenValue = dto.ExpenValue,
+        //        //  added on 1-8-2023
+        //        InvoiceType = (byte?)dto.InvoiceType,
+        //        TrDate = dto.Header_CreatedAt,
+        //        EmpId = empid.EmpId
+
+        //    };
+
+        //    salesOrder.TrNo = ((int)(book).FirstOrDefault()) + 1;
+
+
+        //    _db.MsSalesOrder.Add(salesOrder);
+        //    _db.SaveChanges();
+
+        //    var Counter = _db.SysCounter.FirstOrDefault(x => x.BookId == dto.Header_BookId);
+        //    Counter.Counter = salesOrder.TrNo;
+
+        //    _db.SaveChanges();
+
+
+        //    OrderResultHeaderAndDetailDto res = new OrderResultHeaderAndDetailDto();
+        //    res.id = salesOrder.SalesOrderId;
+        //    res.Message = "تم أضافه الداتا بنجاح";
+
+        //    return Ok(res);
+        //}
+
         [HttpPost, AllowAnonymous]
         public IActionResult CreateOrderHeader(OrderHeaderDto dto)
         {
             var book = from counter in _db.SysCounter
                        where counter.BookId == dto.Header_BookId && counter.TrIdName == "SalesOrderId"
                        select counter.Counter;
+
             var empid = _db.GUsers.FirstOrDefault(x => x.UserId == Convert.ToInt32(dto.Header_CreatedBy));
+
+            var getBookId = _db.SysBooks.FirstOrDefault(b => b.BookId == dto.Header_BookId);
 
             var salesOrder = new MsSalesOrder
             {
@@ -354,27 +427,47 @@ namespace Reports.Controllers
                 TaxValue1 = dto.Header_TaxValue1,
                 TaxValue2 = dto.Header_TaxValue2,
                 TaxValue3 = dto.Header_TaxValue3,
-                TaxesId1 = dto.Header_TaxesId1,
-                TaxesId2 = dto.Header_TaxesId2,
-                TaxesId3 = dto.Header_TaxesId3,
+
+                // تعديلات يوم  لما دخلت مع مصطفي ميتنج الصبح 9/10
+
+
+                TaxesId1 = dto.Header_TaxesId1 == 0 ? null : dto.Header_TaxesId1,
+                TaxesId2 = dto.Header_TaxesId2 == 0 ? null : dto.Header_TaxesId2,
+                TaxesId3 = dto.Header_TaxesId3 == 0 ? null : dto.Header_TaxesId3,
+
                 PriceAfterTax = dto.Header_PriceAfterTax,
-                NetPrice = dto.Header_NetPrice,
-                PaidPrice = dto.Header_PaidPrice,
                 PaidPriceVisa = dto.Header_PaidPriceVisa,
+                ExpenValue = dto.ExpenValue,
+
+
+                // تعديلات يوم  لما دخلت مع مصطفي ميتنج الصبح 9/10
+                // NetPrice = PriceAfterTax + ExpenseValue
+                //فى حالة النقدى 0        
+                //PaidPrice = NetPrice - PaidVisa
+                //فى حالة الأجل 1
+                //NotPaid = NetPrice - PaidVisa - PaidPrice
+
+                NetPrice = dto.Header_PriceAfterTax + dto.ExpenValue,
+
+                InvoiceType = (byte?)dto.InvoiceType,
+
+                PaidPrice = dto.InvoiceType == 0 ? (dto.Header_PriceAfterTax + dto.ExpenValue) - dto.Header_PaidPriceVisa : dto.Header_PaidPrice,
+
+                NotPaid = dto.InvoiceType == 1 ? (dto.Header_PriceAfterTax + dto.ExpenValue) - dto.Header_PaidPriceVisa - dto.Header_PaidPrice : 0,
+
+                //PaidPrice = dto.Header_PaidPrice,
                 Remarks = dto.Remarks,
                 AddField3 = dto.AddField3,
                 InvDueDate = dto.InvDueDate,
                 IsMobile = true,
                 StoreId = dto.StoreId,
-                ExpenValue = dto.ExpenValue,
                 //  added on 1-8-2023
-                InvoiceType = (byte?)dto.InvoiceType,
                 TrDate = dto.Header_CreatedAt,
                 EmpId = empid.EmpId
 
             };
 
-            salesOrder.TrNo = ((int)(book).FirstOrDefault()) + 1;
+            salesOrder.TrNo = (int)book.FirstOrDefault() + 1;
 
 
             _db.MsSalesOrder.Add(salesOrder);
@@ -393,6 +486,7 @@ namespace Reports.Controllers
             return Ok(res);
         }
 
+
         [HttpPost]
         public IActionResult CreateOrderDetail([FromBody]List<OrderDetailDto> dto)
         {
@@ -400,6 +494,24 @@ namespace Reports.Controllers
             foreach (var item in dto)
             {
                 var itmType = _db.MsItemCard.Find(item.ItemCardId);
+
+                var itemPartition = _db.MsItemPartition
+                          .Where(p => p.ItemCardId == item.ItemCardId && p.StorePartId == item.StorePartId)
+                          .FirstOrDefault();
+
+                if(itemPartition != null)
+                {
+                    decimal quantity = item.QtyBeforRate * item.UnitRate;
+                    decimal? reservedQty = itemPartition.ReservedQty;
+                    if (reservedQty == null)
+                    {
+                        reservedQty = 0;
+
+                    }
+                    reservedQty += quantity;
+                    itemPartition.ReservedQty = reservedQty;
+                }
+
 
                 _db.MsSalesOrderItemCard.Add(new MsSalesOrderItemCard()
                 {
@@ -424,15 +536,22 @@ namespace Reports.Controllers
                     DisAmount = item.DisAmount,
                     DisPercent = item.DisAmount > 0 ? (item.DisAmount / (item.Price * item.QtyBeforRate)) * 100 : 0,
 
+
+                    // تعديلات يوم  لما دخلت مع مصطفي ميتنج الصبح 9/10
+
+
+                    TaxesId1 = item.Detail_TaxesId1 == 0 ? null : item.Detail_TaxesId1,
+                    TaxesId2 = item.Detail_TaxesId2 == 0 ? null : item.Detail_TaxesId2,
+                    TaxesId3 = item.Detail_TaxesId3 == 0 ? null : item.Detail_TaxesId3,
+                    Tax1IsAccomulative = item.Detail_TaxesId1 == 0 ? null : item.Tax1IsAccomulative,
+                    Tax2IsAccomulative = item.Detail_TaxesId2 == 0 ? null : item.Tax2IsAccomulative,
+                    Tax3IsAccomulative = item.Detail_TaxesId3 == 0 ? null : item.Tax3IsAccomulative,
+
+
                     Tax1Percent = item.Tax1Percent,
                     Tax2Percent = item.Tax2Percent,
                     Tax3Percent = item.Tax3Percent,
-                    TaxesId1 = item.Detail_TaxesId1,
-                    TaxesId2 = item.Detail_TaxesId2,
-                    TaxesId3 = item.Detail_TaxesId3,
-                    Tax1IsAccomulative = item.Tax1IsAccomulative,
-                    Tax2IsAccomulative = item.Tax2IsAccomulative,
-                    Tax3IsAccomulative = item.Tax3IsAccomulative,
+                   
                     IsCollection = item.IsCollection
                 });
                 OrderId = item.SalesOrderId;
@@ -444,6 +563,7 @@ namespace Reports.Controllers
             return Ok(res);
         }
 
+       
         [HttpGet]
         public IEnumerable<getOrderHeaderDto> getOrderHeaderBycreatedBy(string createdBy)
         {
@@ -456,11 +576,13 @@ namespace Reports.Controllers
             return _itemsBll.GetOrderDetailBySalesOrdertemCardId(SalesOrdertemCardId);
         }
 
-        [HttpPut("{SalesOrderId}")]
+        [HttpPost("{SalesOrderId}")]
         public async Task<IActionResult> UpdateOrderHeader(int SalesOrderId, [FromBody] UpdateOrderHeaderDto dto)
         {
             var updateDto = new updateHeaderDto();
+
             var Orderheader = await _db.MsSalesOrder.FindAsync(SalesOrderId);
+
             if (Orderheader == null) return NotFound(SalesOrderId);
             var empid = _db.GUsers.FirstOrDefault(x => x.UserId == Convert.ToInt32(dto.CreatedBy));
 
@@ -477,12 +599,12 @@ namespace Reports.Controllers
             Orderheader.TaxValue1 = dto.Header_TaxValue1;
             Orderheader.TaxValue2 = dto.Header_TaxValue2;
             Orderheader.TaxValue3 = dto.Header_TaxValue3;
-            Orderheader.TaxesId1 = dto.Header_TaxesId1;
-            Orderheader.TaxesId2 = dto.Header_TaxesId2;
-            Orderheader.TaxesId3 = dto.Header_TaxesId3;
+            Orderheader.TaxesId1 = dto.Header_TaxesId1 == 0 ? null : dto.Header_TaxesId1;
+            Orderheader.TaxesId2 = dto.Header_TaxesId2 == 0 ? null : dto.Header_TaxesId2;
+            Orderheader.TaxesId3 = dto.Header_TaxesId3 == 0 ? null : dto.Header_TaxesId3;
             Orderheader.PriceAfterTax = dto.Header_PriceAfterTax;
-            Orderheader.NetPrice = dto.Header_NetPrice;
-            Orderheader.PaidPrice = dto.Header_PaidPrice;
+            //Orderheader.NetPrice = dto.Header_NetPrice;
+            //Orderheader.PaidPrice = dto.Header_PaidPrice;
             Orderheader.PaidPriceVisa = dto.Header_PaidPriceVisa;
             Orderheader.Remarks = dto.Remarks;
             Orderheader.AddField3 = dto.AddField3;
@@ -495,11 +617,20 @@ namespace Reports.Controllers
             Orderheader.CreatedBy = dto.CreatedBy;
             Orderheader.EmpId = empid.EmpId;
 
+            //5 - 12 - 2023
+            //  التعديل الي حصل لما الابديت الخاص بالاهيدر حصل 
+
+            Orderheader.NotPaid = dto.InvoiceType == 1 ? (dto.Header_PriceAfterTax + dto.ExpenValue) - dto.Header_PaidPriceVisa - dto.Header_PaidPrice : 0;
+            Orderheader.PaidPrice = dto.InvoiceType == 0 ? (dto.Header_PriceAfterTax + dto.ExpenValue) - dto.Header_PaidPriceVisa : dto.Header_PaidPrice;
+            Orderheader.NetPrice = dto.Header_PriceAfterTax + dto.ExpenValue;
+
+
             _db.SaveChanges();
 
-            var detailRange = _db.MsSalesOrderItemCard.Where(inv => inv.SalesOrderId == Orderheader.SalesOrderId).ToList();
-            _db.MsSalesOrderItemCard.RemoveRange(detailRange);
-            _db.SaveChanges();
+            // التعديل الي كنت بمسح منه كل ال Detail الخاص بيه 
+            //var detailRange = _db.MsSalesOrderItemCard.Where(inv => inv.SalesOrderId == Orderheader.SalesOrderId).ToList();
+            //_db.MsSalesOrderItemCard.RemoveRange(detailRange);
+            //_db.SaveChanges();
 
             updateDto.message = "update Successfully";
             updateDto.SalesOrderId = Orderheader.SalesOrderId;
@@ -507,7 +638,136 @@ namespace Reports.Controllers
 
         }
 
-        [HttpDelete("{SalesOrderId},{UserId}")]
+        [HttpPost]
+        public IActionResult UpdateOrderDetail([FromBody] List<OrderDetailDto> dto)
+        {
+            foreach (OrderDetailDto item in dto)
+            {
+                MsItemCard itmType = _db.MsItemCard.Find(item.ItemCardId);
+
+                MsSalesOrderItemCard GetOrderDetail 
+                    = _db.MsSalesOrderItemCard.Where(p => p.SalesOrderId == item.SalesOrderId  && p.ItemCardId == item.ItemCardId && p.StorePartId == item.StorePartId).FirstOrDefault();
+                MsItemPartition itemPartition = _db.MsItemPartition
+                          .Where(p => p.ItemCardId == item.ItemCardId && p.StorePartId == item.StorePartId)
+                          .FirstOrDefault();
+
+    
+                if (GetOrderDetail != null)
+                {
+                    // هنا انا جبت الكميه القديمه للمنتج قبل التعديل 
+                    decimal? OldQuantity = GetOrderDetail.Quantity;
+
+
+                    GetOrderDetail.SalesOrderId = item.SalesOrderId;
+                    GetOrderDetail.ItemCardId = item.ItemCardId;
+                    GetOrderDetail.Price = item.Price;
+                    GetOrderDetail.PriceAfterRate = item.PriceAfterRate;
+                    GetOrderDetail.QtyBeforRate = item.QtyBeforRate;
+                    GetOrderDetail.UnitId = item.UnitId;
+                    GetOrderDetail.UnitRate = item.UnitRate;
+                    GetOrderDetail.StoreId = item.StoreId;
+                    GetOrderDetail.StorePartId = item.StorePartId;
+              
+                
+                // المعادله التانيه
+                // فيها الكميه الجديده بعد التعديل  
+                    GetOrderDetail.Quantity = item.QtyBeforRate * item.UnitRate;
+
+                    decimal? NewQuantity = GetOrderDetail.Quantity;
+
+                    if(OldQuantity > NewQuantity)
+                    {
+                        decimal? NewReservedQty = OldQuantity - NewQuantity;
+
+                        if (itemPartition != null)
+                        {
+
+                            itemPartition.ReservedQty -= NewReservedQty;
+                        }
+                    }
+
+                    if(OldQuantity < NewQuantity)
+                    {
+                        decimal? NewReservedQty = NewQuantity - OldQuantity;
+                        if (itemPartition != null)
+                        {
+                            itemPartition.ReservedQty += NewReservedQty;
+                        }
+
+                    }
+
+                    // التعديل الثالث الخاص ب ال item Type
+                    GetOrderDetail.ItemType = itmType.ItemType;
+                    GetOrderDetail.DisAmount = item.DisAmount;
+                    GetOrderDetail.DisPercent = item.DisAmount > 0 ? (item.DisAmount / (item.Price * item.QtyBeforRate)) * 100 : 0;
+                    GetOrderDetail.TaxesId1 = item.Detail_TaxesId1 == 0 ? null : item.Detail_TaxesId1;
+                    GetOrderDetail.TaxesId2 = item.Detail_TaxesId2 == 0 ? null : item.Detail_TaxesId2;
+                    GetOrderDetail.TaxesId3 = item.Detail_TaxesId3 == 0 ? null : item.Detail_TaxesId3;
+                    GetOrderDetail.Tax1IsAccomulative = item.Detail_TaxesId1 == 0 ? null : item.Tax1IsAccomulative;
+                    GetOrderDetail.Tax2IsAccomulative = item.Detail_TaxesId2 == 0 ? null : item.Tax2IsAccomulative;
+                    GetOrderDetail.Tax3IsAccomulative = item.Detail_TaxesId3 == 0 ? null : item.Tax3IsAccomulative;
+                    GetOrderDetail.Tax1Percent = item.Tax1Percent;
+                    GetOrderDetail.Tax2Percent = item.Tax2Percent;
+                    GetOrderDetail.Tax3Percent = item.Tax3Percent;
+                    GetOrderDetail.IsCollection = item.IsCollection;
+                    _db.SaveChanges();
+
+                }
+                else
+                {
+                    _db.MsSalesOrderItemCard.Add(new MsSalesOrderItemCard()
+                    {
+                        SalesOrderId = item.SalesOrderId,
+                        ItemCardId = item.ItemCardId,
+                        Price = item.Price,
+                        PriceAfterRate = item.PriceAfterRate,
+                        QtyBeforRate = item.QtyBeforRate,
+                        UnitId = item.UnitId,
+                        UnitRate = item.UnitRate,
+                        StoreId = item.StoreId,
+                        StorePartId = item.StorePartId,
+                        // اول معادله 
+
+                        // المعادله التانيه
+
+                        Quantity = item.QtyBeforRate * item.UnitRate,
+
+                        // التعديل الثالث الخاص ب ال item Type
+
+                        ItemType = itmType.ItemType,
+                        DisAmount = item.DisAmount,
+                        DisPercent = item.DisAmount > 0 ? (item.DisAmount / (item.Price * item.QtyBeforRate)) * 100 : 0,
+
+
+                        // تعديلات يوم  لما دخلت مع مصطفي ميتنج الصبح 9/10
+
+
+                        TaxesId1 = item.Detail_TaxesId1 == 0 ? null : item.Detail_TaxesId1,
+                        TaxesId2 = item.Detail_TaxesId2 == 0 ? null : item.Detail_TaxesId2,
+                        TaxesId3 = item.Detail_TaxesId3 == 0 ? null : item.Detail_TaxesId3,
+                        Tax1IsAccomulative = item.Detail_TaxesId1 == 0 ? null : item.Tax1IsAccomulative,
+                        Tax2IsAccomulative = item.Detail_TaxesId2 == 0 ? null : item.Tax2IsAccomulative,
+                        Tax3IsAccomulative = item.Detail_TaxesId3 == 0 ? null : item.Tax3IsAccomulative,
+
+
+                        Tax1Percent = item.Tax1Percent,
+                        Tax2Percent = item.Tax2Percent,
+                        Tax3Percent = item.Tax3Percent,
+
+                        IsCollection = item.IsCollection
+
+                    });
+
+                    _db.SaveChanges();
+                }
+
+            }
+            var response = new { message = "تم تعديل الداتا بنجاح" };
+
+            return Ok(response);
+        }
+             
+        [HttpPost("{SalesOrderId},{UserId}")]
         public async Task<IActionResult> DeleteOrderHeader(int SalesOrderId, int UserId)
         {
             var deleteMessageDto = new DeleteDto();
@@ -784,37 +1044,66 @@ namespace Reports.Controllers
             return Ok(response);
         }
 
-       [HttpGet("GetInvoice")]
+        //[HttpGet("GetInvoice")]
+        // public async Task<IActionResult> GetInvoice(int invid)
+        // {
+        //     // استخراج الأعمدة التي تريدها من الجدول
+        //     var data = await _db.MsSalesInvoiceItemCard
+        //         .Where(items => items.InvId == invid)
+        //        .Join(_db.MsItemCard, // الجدول الثاني الذي تريد الانضمام إليه
+        //         item => item.ItemCardId, // مفتاح الانضمام من الجدول الأول
+        //         msitem => msitem.ItemCardId, // مفتاح الانضمام من الجدول الثاني
+        //        (item, msitem) => new // مشروع لاسترداد البيانات المطلوبة من الانضمام
+        //       {
+        //             item.PriceAfterRate,
+        //             item.ItemCardId,
+        //             msitem.ItemDescA,
+        //             item.Price,
+        //             item.QtyBeforRate,
+        //             item.UnitId,
+        //             item.UnitRate,
+        //             item.StoreId,
+        //             item.StorePartId,
+        //             item.Quantity,
+        //             item.ItemType,
+        //             item.DisAmount,
+        //             item.DisPercent
+
+        //         })
+        //         .ToListAsync(); 
+
+        //     return Ok(data); // ترجيع البيانات كاستجابة HTTP معروفة
+        // }
+
+        [HttpGet("GetInvoice")]
         public async Task<IActionResult> GetInvoice(int invid)
         {
-            // استخراج الأعمدة التي تريدها من الجدول
-            var data = await _db.MsSalesInvoiceItemCard
-                .Where(items => items.InvId == invid)
-               .Join(_db.MsItemCard, // الجدول الثاني الذي تريد الانضمام إليه
-                item => item.ItemCardId, // مفتاح الانضمام من الجدول الأول
-                msitem => msitem.ItemCardId, // مفتاح الانضمام من الجدول الثاني
-               (item, msitem) => new // مشروع لاسترداد البيانات المطلوبة من الانضمام
-              {
-                    item.PriceAfterRate,
-                    item.ItemCardId,
-                    msitem.ItemDescA,
-                    item.Price,
-                    item.QtyBeforRate,
-                    item.UnitId,
-                    item.UnitRate,
-                    item.StoreId,
-                    item.StorePartId,
-                    item.Quantity,
-                    item.ItemType,
-                    item.DisAmount,
-                    item.DisPercent
-                                     
-                })
-                .ToListAsync(); 
+            var data = await (from item in _db.MsSalesInvoiceItemCard
+                              where item.InvId == invid
+                              join msitem in _db.MsItemCard on item.ItemCardId equals msitem.ItemCardId
+                              join unit in _db.MsItemUnit on item.ItemCardId equals unit.ItemCardId into unitJoin
+                              from unit in unitJoin.DefaultIfEmpty() // Left Join
+                              select new
+                              {
+                                  item.PriceAfterRate,
+                                  item.ItemCardId,
+                                  msitem.ItemDescA,
+                                  item.Price,
+                                  item.QtyBeforRate,
+                                  item.UnitId,
+                                  item.UnitRate,
+                                  item.StoreId,
+                                  item.StorePartId,
+                                  item.Quantity,
+                                  item.ItemType,
+                                  item.DisAmount,
+                                  item.DisPercent,
+                                  UnitName = unit.UnitNam
+                              })
+            .ToListAsync();
 
-            return Ok(data); // ترجيع البيانات كاستجابة HTTP معروفة
+            return Ok(data);
         }
-
 
         [HttpPost, AllowAnonymous]
         public IActionResult ReturnRequestHeader([FromBody] HeaderDto dto)
@@ -826,7 +1115,7 @@ namespace Reports.Controllers
 
             var empid = _db.GUsers.FirstOrDefault(x => x.UserId == Convert.ToInt32(dto.Header_CreatedBy));
 
-
+           
             var ReturnSalesReq = new MsReturnSalesReq
             {
                 BookId = dto.Header_BookId,
@@ -871,6 +1160,12 @@ namespace Reports.Controllers
 
 
             };
+
+          //  string prefixCode = _db.SysBooks
+          //.Where(book => book.BookId == )
+          //.Select(book => book.PrefixCode)
+          //.FirstOrDefault();
+
 
             ReturnSalesReq.TrNo = ((int)(book).FirstOrDefault()) + 1;
 
@@ -1025,6 +1320,11 @@ namespace Reports.Controllers
                         InvoiceType = salesInvoice.InvoiceType,
                     };
 
+                    //string prefixCode = _db.SysBooks
+                    // .Where(book => book.BookId == salesInvoice.BookId)
+                    // .Select(book => book.PrefixCode)
+                    // .FirstOrDefault();
+
                     returnSalesReq.TrNo = ((int)(book).FirstOrDefault()) + 1;
 
                     var Counter = _db.SysCounter.FirstOrDefault(x => x.TrIdName == "ReqsalesId");
@@ -1043,6 +1343,7 @@ namespace Reports.Controllers
                                 InvId = detailSalesReq.InvId,
                                 ItemCardId = detailSalesReq.ItemCardId,
                                 Price = detailSalesReq.Price,
+                                ServicePrice = detailSalesReq.Price,
                                 QtyBeforRate = detailSalesReq.QtyBeforRate,
                                 UnitId = detailSalesReq.UnitId,
                                 UnitRate = detailSalesReq.UnitRate,
@@ -1077,6 +1378,8 @@ namespace Reports.Controllers
 
                         record.ReturnedQuantity += update.ReturnedQuantity;
 
+                        record.Remarks = update.note;
+
                     };
 
                     if (record.Quantity < record.ReturnedQuantity)
@@ -1085,6 +1388,14 @@ namespace Reports.Controllers
                         record.ReturnedQuantity = record.Quantity;
 
                     }
+
+                    if (update.UpdatePrice != 0 )
+                    {
+                        record.Price = update.UpdatePrice;
+                    }
+
+                   
+
                 }
 
                 await _db.SaveChangesAsync();
@@ -1238,6 +1549,35 @@ namespace Reports.Controllers
         //    }
         //}
 
+        [HttpPost]
+        public async Task<IActionResult> GetReturnReuestDeatail (int reqId)
+        {
+            var data =  from reqDetail in _db.MsReturnSalesReqItemCard
+                       join msitemCard in _db.MsItemCard
+                       on reqDetail.ItemCardId equals msitemCard.ItemCardId
+                       where reqDetail.ReqsalesId == reqId
+                       select new
+                       {
+                           reqDetail.ItemCardId,
+                           msitemCard.ItemDescA,
+                           reqDetail.ReqsalesId,
+                           reqDetail.Price,
+                           reqDetail.ServicePrice,
+                           reqDetail.Quantity,
+                           reqDetail.ReturnedQuantity,
+                           reqDetail.InvId,
+                           reqDetail.StoreId,
+                           reqDetail.StorePartId,
+                           reqDetail.Remarks,
+
+                       };
+
+            var reusltData = await data.ToListAsync();
+
+            return Ok(reusltData);
+        }
+
+
         [HttpGet("GetAllReturnInvoiceRequest")]
         public async Task<IActionResult> GetAllReturnInvoiceRequest(int pageNumber = 1, int pageSize = 10,
             string DocTrNo = null, string CustomerCode = null)
@@ -1263,7 +1603,9 @@ namespace Reports.Controllers
 
             if (!string.IsNullOrWhiteSpace(DocTrNo))
             {
-                query = query.Where(bill => bill.DocTrNo == DocTrNo);
+                //query = query.Where(bill => bill.DocTrNo == DocTrNo);
+                query = query.Where(bill => bill.DocTrNo.Contains(DocTrNo));
+
             }
 
 

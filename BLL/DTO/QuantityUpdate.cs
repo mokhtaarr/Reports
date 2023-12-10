@@ -9,5 +9,7 @@ namespace BLL.DTO
         public int Invid { get; set; }
         public int ItemCardId { get; set; }
         public decimal ReturnedQuantity { get; set; }
+        public decimal? UpdatePrice { get; set; }
+        public string note { get; set; }
     }
 }

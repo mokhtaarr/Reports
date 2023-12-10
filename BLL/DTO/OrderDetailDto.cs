@@ -22,12 +22,12 @@ namespace BLL.DTO
         public decimal Tax1Percent { get; set; }
         public decimal Tax2Percent { get; set; }
         public decimal Tax3Percent { get; set; }
-        public int Detail_TaxesId1 { get; set; }
-        public int Detail_TaxesId2 { get; set; }
-        public int Detail_TaxesId3 { get; set; }
-        public bool Tax1IsAccomulative { get; set; }
-        public bool Tax2IsAccomulative { get; set; }
-        public bool Tax3IsAccomulative { get; set; }
+        public int? Detail_TaxesId1 { get; set; }
+        public int? Detail_TaxesId2 { get; set; }
+        public int? Detail_TaxesId3 { get; set; }
+        public bool? Tax1IsAccomulative { get; set; }
+        public bool? Tax2IsAccomulative { get; set; }
+        public bool? Tax3IsAccomulative { get; set; }
         public bool IsCollection { get; set; }
 
     }
